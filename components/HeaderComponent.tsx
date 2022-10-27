@@ -105,6 +105,7 @@ const HeaderComponent: NextComponentType = () => {
             </Box>
 
             <Box textAlign={{ base: "center", lg: "unset" }}>
+            <Text color={'yellow'} fontWeight={'bold'}>{("Meet your instructor").toUpperCase()}</Text>
               <Heading color={"white"}>Nadine Henry-Thomas</Heading>
               <Text fontWeight={'bold'}>{("AHA CPR Instructor").toUpperCase()}</Text>
               <Text color={"white"}>
