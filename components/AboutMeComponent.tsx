@@ -4,16 +4,16 @@ const AboutMeComponent: NextComponentType = () => {
   return (
     <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} spacing={5}>
       <Box>
-        <Heading mb={10} size={"md"}>
-          ABOUT JOEL
+        <Heading color={'green'} mb={10} size={"lg"}>
+          Get Certified Today
         </Heading>
         <Heading size={"3xl"}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Importance of BLS Certification
         </Heading>
       </Box>
       <Box display={"flex"} alignItems={"center"}>
         <Box>
-          <Box mt={5} bg={"red.500"} h={1} w={"20%"} />
+          <Box mt={5} bg={"green.500"} h={1} w={"20%"} />
           <Text py={2}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse id
             incidunt perferendis voluptas, impedit non placeat eveniet libero.

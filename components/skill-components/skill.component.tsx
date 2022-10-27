@@ -27,7 +27,7 @@ export default function SkillComponent(props: SkillProps) {
           p={10}
           h={'full'}
         >
-          <VStack gap={2} textColor={"red.500"} textAlign={"center"}>
+          <VStack gap={2} textColor={"green.500"} textAlign={"center"}>
             {icon}
             <Text color={"gray.500"} fontWeight={"medium"} fontSize={"sm"}>
               {skill}

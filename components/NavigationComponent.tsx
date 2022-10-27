@@ -1,4 +1,4 @@
-import { Box, HStack, IconButton, Image } from "@chakra-ui/react";
+import { Box, HStack, IconButton, Image, Heading } from '@chakra-ui/react';
 import type { NextComponentType } from "next";
 
 import * as Park from "@icon-park/react";
@@ -19,7 +19,8 @@ const NavigationComponent: NextComponentType = () => {
         boxShadow={"xl"}
       >
         <HStack justifyContent={"space-between"}>
-          <Image src={"/logo.png"} width={10} />
+          <Heading color={'white'}>TTEE</Heading>
+          {/* <Image src={"/logo.png"} width={10} /> */}
           <HStack color={"white"}>
             <IconButton
               variant={"unstyled"}

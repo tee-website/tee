@@ -22,6 +22,10 @@ const ContactFormComponent: NextComponentType = () => {
         </InputGroup>
 
         <InputGroup py={1}>
+          <Input type={"number"} borderRadius={0} placeholder={"Mobile"} />
+        </InputGroup>
+
+        <InputGroup py={1}>
           <Textarea borderRadius={0} placeholder={"Your Message"} />
         </InputGroup>
       </Box>
