@@ -3,22 +3,22 @@ import Head from "next/head";
 import {
   Box,
   Text,
-  Button,
-  HStack,
   Heading,
   SimpleGrid,
   Center,
-  Image,
   Divider,
   IconButton,
-  Input,
-  InputGroup,
-  Textarea,
-  VStack,
-  Stack
+  Stack,
 } from "@chakra-ui/react";
 
 import * as Park from "@icon-park/react";
+import {
+  HeaderComponent,
+  ContactFormComponent,
+  AboutMeComponent,
+  SkillComponent,
+  ProjectComponent
+} from "../components";
 
 const Home: NextPage = () => {
   return (
@@ -29,355 +29,70 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header>
-        <Box bg={"blackAlpha.700"} position="relative">
-          <Box
-            position={"absolute"}
-            top={{ base: 0, md: 10 }}
-            left={{ base: 0, md: 60 }}
-            right={{ base: 0, md: 60 }}
-            px={{ base: 5, md: 10 }}
-            py={2}
-            bg={"whiteAlpha.200"}
-          >
-            <HStack justifyContent={"space-between"}>
-              <Image src={"/logo.png"} width={10} />
-              <HStack color={"white"}>
-                <IconButton
-                  variant={"unstyled"}
-                  icon={<Park.MenuUnfold size={32} />}
-                />
-              </HStack>
-            </HStack>
-          </Box>
-          <Box
-            h={"60vh"}
-            display={"flex"}
-            justifyContent={"left"}
-            alignItems={"center"}
-          >
-            <Box py={{ base: 20, md: 40 }} px={{ base: 10, md: 40, lg: 60 }}>
-              <Box fontSize={"6xl"} color={"white"}>
-                <Heading>
-                  Hello, I'm{" "}
-                  <Box as="span" color="red">
-                    Joel Henry
-                  </Box>
-                </Heading>
-              </Box>
+      <HeaderComponent />
 
-              <Box w={"70%"} py={5}>
-                <Text as="p" color={"white"}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
-                  laudantium, neque obcaecati.
-                </Text>
-              </Box>
+      <Box
+        position={"relative"}
+        py={{ base: 10, md: 20 }}
+        px={{ base: 10, md: 40, lg: 60 }}
+        bg={"gray.100"}
+        boxShadow={"xl"}
+      >
+        <SkillComponent />
+        <Divider my={5} />
+        <AboutMeComponent />
 
-              <HStack>
-                <Button borderRadius={0}>About Me</Button>
-                <Button borderRadius={0} variant="outline" colorScheme={"red"}>
-                  Contact Me
-                </Button>
-              </HStack>
-            </Box>
-          </Box>
-
-          <Box
-            bg={`url('${"https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"}')`}
-            zIndex={-1}
-            top={0}
-            left={0}
-            right={0}
-            bottom={0}
-            position={"absolute"}
-          />
-        </Box>
-
-        <Box
-          bg={"red.500"}
-          pt={10}
-          pb={20}
-          px={{ base: 10, md: 40, lg: 60 }}
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-        >
-          <Box>
-            <Box
-              display={{ base: "block", lg: "flex" }}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
-              <Box
-                display={"flex"}
-                justifyContent={"center"}
-                py={5}
-                pr={{ base: 0, lg: 20 }}
-              >
-                <Box borderRadius={"full"} bg={"white"} p={5}>
-                  <Box
-                    w={40}
-                    h={40}
-                    overflow={"hidden"}
-                    display={"flex"}
-                    justifyContent={"center"}
-                    borderRadius={"full"}
-                    alignItems={"center"}
-                  >
-                    <Image
-                      w={"full"}
-                      src={
-                        "https://images.unsplash.com/photo-1509305717900-84f40e786d82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHBvcnRyYWl0JTIwYmxhY2slMjBtZW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-                      }
-                    />
-                  </Box>
-                </Box>
-              </Box>
-
-              <Box textAlign={{ base: "center", lg: "unset" }}>
-                <Heading color={"white"}>Lorem ipsum dolor sit.</Heading>
-                <Text color={"white"}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus et aliquid modi aperiam quo distinctio
-                  consequatur iusto beatae soluta perspiciatis!
-                </Text>
-              </Box>
-            </Box>
-          </Box>
-        </Box>
-
-        <Box
-          position={"relative"}
-          py={{ base: 10, md: 20 }}
-          px={{ base: 10, md: 40, lg: 60 }}
+        <Center
+          borderRadius={5}
+          w={20}
+          h={20}
+          top={-10}
+          left={{ base: 10, md: 60 }}
+          transform={"rotate(45deg)"}
           bg={"gray.100"}
+          position={"absolute"}
+          boxShadow={"lg"}
         >
-          <Center
-            borderRadius={5}
-            w={20}
-            h={20}
-            top={-10}
-            left={{ base: 10, md: 60 }}
-            transform={"rotate(45deg)"}
-            bg={"gray.100"}
-            position={"absolute"}
-          >
-            <Box transform={"rotate(-45deg)"}>
-              <Park.Down size={32} />
-            </Box>
-          </Center>
+          <Box transform={"rotate(-45deg)"}>
+            <Park.Down size={32} />
+          </Box>
+        </Center>
+      </Box>
 
-          <SimpleGrid columns={{ base: 1, lg: 2 }}>
-            <Box py={10} pr={10}>
-              <Heading mb={5} size={"md"}>
-                My Skills
-              </Heading>
-              <Text>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </Text>
+      <ProjectComponent />
 
-              <Box mt={5} bg={"red.500"} h={1} w={"20%"} />
-            </Box>
-
-            <SimpleGrid columns={{ base: 2, md: 2, lg: 2 }}>
-              <Center
-                borderColor={"gray.200"}
-                borderWidth={"thin"}
-                bg={"white"}
-                p={10}
-              >
-                <VStack gap={2} textColor={"red.500"} textAlign={"center"}>
-                  <Park.Connect size={48} />
-                  <Text color={"gray.500"} fontWeight={"medium"} fontSize={"md"}>
-                    Teamwork
-                  </Text>
-                </VStack>
-              </Center>
-              <Center
-                borderColor={"gray.200"}
-                borderWidth={"thin"}
-                bg={"white"}
-                p={10}
-              >
-                <VStack gap={2} textColor={"red.500"} textAlign={"center"}>
-                  <Park.Tips size={48} />
-                  <Text color={"gray.500"} fontWeight={"medium"} fontSize={"md"}>
-                    Critical Thinking
-                  </Text>
-                </VStack>
-              </Center>
-            </SimpleGrid>
-          </SimpleGrid>
-
-          <SimpleGrid columns={{ base: 2, md: 2, lg: 4 }}>
-            <Center
-              borderColor={"gray.200"}
-              borderWidth={"thin"}
-              bg={"white"}
-              p={10}
-            >
-              <VStack gap={2} textColor={"red.500"} textAlign={"center"}>
-                <Park.Code size={48} />
-                <Text color={"gray.500"} fontWeight={"medium"} fontSize={"md"}>
-                  Coding & Debugging
-                </Text>
-              </VStack>
-            </Center>
-
-            <Center
-              borderColor={"gray.200"}
-              borderWidth={"thin"}
-              bg={"white"}
-              p={10}
-            >
-              <VStack gap={2} textColor={"red.500"} textAlign={"center"}>
-                <Park.GlassesThree size={48} />
-                <Text color={"gray.500"} fontWeight={"medium"} fontSize={"md"}>
-                  Problem Solving
-                </Text>
-              </VStack>
-            </Center>
-            <Center
-              borderColor={"gray.200"}
-              borderWidth={"thin"}
-              bg={"white"}
-              p={10}
-            >
-              <VStack gap={2} textColor={"red.500"} textAlign={"center"}>
-                <Park.Star size={48} />
-                <Text color={"gray.500"} fontWeight={"medium"} fontSize={"md"}>
-                  Creativity
-                </Text>
-              </VStack>
-            </Center>
-            <Center
-              borderColor={"gray.200"}
-              borderWidth={"thin"}
-              bg={"white"}
-              p={10}
-            >
-              <VStack gap={2} textColor={"red.500"} textAlign={"center"}>
-                <Park.MessageOne size={48} />
-                <Text color={"gray.500"} fontWeight={"medium"} fontSize={"md"}>
-                  Communication
-                </Text>
-              </VStack>
-            </Center>
-          </SimpleGrid>
-
-          <Divider my={5} />
-
-          <SimpleGrid columns={{ base: 1, md: 1, lg: 2 }} spacing={5}>
-            <Box>
-              <Heading mb={10} size={"md"}>
-                ABOUT JOEL
-              </Heading>
-              <Heading size={"3xl"}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </Heading>
-            </Box>
-            <Box display={"flex"} alignItems={"center"}>
-              <Box>
-                <Box mt={5} bg={"red.500"} h={1} w={"20%"} />
-                <Text py={2}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-                  id incidunt perferendis voluptas, impedit non placeat eveniet
-                  libero. Quae maiores reiciendis, explicabo non optio pariatur!
-                  Architecto libero aliquid cum est quis dolores. Dicta voluptas
-                  officiis ipsum, similique aspernatur enim eveniet.
-                </Text>
-                <Text py={2}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
-                  recusandae, ea voluptatibus odio nesciunt maxime assumenda
-                  eaque vitae labore! Architecto, ab fuga, reiciendis eveniet ut
-                  alias, minus culpa harum error voluptatibus aut quas
-                  doloribus. Sint?
-                </Text>
-              </Box>
-            </Box>
-          </SimpleGrid>
-        </Box>
-
-        <Box bg={"blackAlpha.700"} py={10} px={{ base: 10, md: 40, lg: 60 }}>
-          <SimpleGrid columns={{ base: 1, lg: 4 }}>
-            <Box>
-              <Heading size={"md"} color={"white"}>
-                MY WORK
-              </Heading>
-              <Box mt={5} bg={"red.500"} h={1} w={"20%"} />
-            </Box>
-            <Center bg={"whiteAlpha.400"} p={10}>
-              H
-            </Center>
-            <Center bg={"whiteAlpha.400"} p={10}>
-              A
-            </Center>
-            <Center bg={"whiteAlpha.400"} p={10}>
-              P
-            </Center>
-            <Center bg={"whiteAlpha.400"} p={10}>
-              P
-            </Center>
-            <Center bg={"whiteAlpha.400"} p={10}>
-              Y
-            </Center>
-          </SimpleGrid>
-        </Box>
-
-        <Box bg={"blackAlpha.900"} py={10} px={{ base: 10, md: 40, lg: 60 }}>
-          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={5}>
-            <Box>
-              <Heading color={"white"}>Get In Touch</Heading>
-              <Box as={"form"} py={10}>
-                <InputGroup py={1}>
-                  <Input borderRadius={0} placeholder={"Name"} />
-                </InputGroup>
-
-                <InputGroup py={1}>
-                  <Input borderRadius={0} placeholder={"Enter email"} />
-                </InputGroup>
-
-                <InputGroup py={1}>
-                  <Textarea borderRadius={0} placeholder={"Your Message"} />
-                </InputGroup>
-              </Box>
-              <Box display={"flex"} w={"full"} justifyContent={"right"}>
-                <Button borderRadius={0} variant={"outline"} color={"white"}>
-                  Send
-                </Button>
-              </Box>
-            </Box>
-            <Center>
-              <Stack flexDirection={{base: "horizontal", lg: "column"}} gap={5}>
+      <Box bg={"blackAlpha.900"} py={10} px={{ base: 10, md: 40, lg: 60 }}>
+        <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={5}>
+          <ContactFormComponent />
+          <Center>
+            <Stack flexDirection={{base: 'row', lg: 'column'}} gap={5}>
               <IconButton
               mt={2}
                 size={"lg"}
                 borderRadius={0}
                 icon={<Park.Instagram size={28} />}
-              />
+                aria-label={"Instagram"} />
               <IconButton
                 size={"lg"}
                 borderRadius={0}
                 icon={<Park.InstagramOne size={28} />}
-              />
+                aria-label={"LinkedIn"} />
               <IconButton
                 size={"lg"}
                 borderRadius={0}
                 icon={<Park.Github size={28} />}
-              />
-              </Stack>
-              
-            </Center>
-          </SimpleGrid>
-        </Box>
-      </header>
+                aria-label={"Github"} />
+            </Stack>
+          </Center>
+        </SimpleGrid>
+      </Box>
 
-      <main></main>
-
-      <Box as={"footer"} bg={"black"} p={5} >
-            <Center>
-              <Text color={"gray.500"}>All Rights Reserved by Joel Henry ©2022</Text>
-            </Center>
+      <Box as={"footer"} bg={"black"} p={5}>
+        <Center>
+          <Text color={"gray.500"}>
+            All Rights Reserved by Joel Henry ©2022
+          </Text>
+        </Center>
       </Box>
     </>
   );
