@@ -1,20 +1,27 @@
-import { ReactElement, useState } from "react";
-import { Center, VStack, Text, Box, useBoolean } from "@chakra-ui/react";
+import React from "react";
+
+import { useBoolean } from "@chakra-ui/react";
+import { Center, Box, VStack, Text } from "@chakra-ui/react";
 
 import Fade from "react-reveal/Fade";
 
-interface SkillProps {
-  skill: string;
-  icon: ReactElement;
-  image_url: string;
-}
+export type PackageProps = {
+  onOpen: any;
+  packageName: string;
+  icon: React.ReactNode;
+  image: string;
+};
 
-export default function SkillComponent(props: SkillProps) {
-  const { skill, icon, image_url } = props;
+export default function PackageLabelComponent({
+  onOpen,
+  packageName,
+  icon,
+  image,
+}: PackageProps) {
   const [show, { off, toggle }] = useBoolean(false);
-
   return (
     <Box
+      onClick={onOpen}
       overflow={"hidden"}
       position={"relative"}
       _hover={{ cursor: "pointer" }}
@@ -25,12 +32,12 @@ export default function SkillComponent(props: SkillProps) {
           borderWidth={"thin"}
           bg={"white"}
           p={10}
-          h={'full'}
+          h={"full"}
         >
           <VStack gap={2} textColor={"green.500"} textAlign={"center"}>
             {icon}
             <Text color={"gray.500"} fontWeight={"medium"} fontSize={"sm"}>
-              {skill}
+              {packageName}
             </Text>
           </VStack>
         </Center>
@@ -46,13 +53,13 @@ export default function SkillComponent(props: SkillProps) {
         onMouseLeave={off}
       >
         <Fade left opposite when={show}>
-          <Box bg={`url('${image_url}')`} backgroundSize={"cover"}>
+          <Box bg={`url('${image}')`} backgroundSize={"cover"}>
             <Center
               borderColor={"gray.200"}
               borderWidth={"thin"}
               p={10}
               bg={"blackAlpha.700"}
-              h={'full'}
+              h={"full"}
             >
               <VStack gap={2} textColor={"white"} textAlign={"center"}>
                 {icon}
@@ -61,7 +68,7 @@ export default function SkillComponent(props: SkillProps) {
                   fontWeight={"medium"}
                   fontSize={"sm"}
                 >
-                  {skill}
+                  {packageName}
                 </Text>
               </VStack>
             </Center>
