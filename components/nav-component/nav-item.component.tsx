@@ -11,9 +11,11 @@ export type NavItemProps = {
 export default function NavItem({ link, label, color }: NavItemProps) {
   return (
     <Link href={link}>
-      <Text color={color ?? "white"} fontWeight={"medium"} as={"a"}>
-        {label}
-      </Text>
+      <a href={link}>
+        <Text color={color ?? "green"} fontWeight={"medium"}>
+          {label}
+        </Text>
+      </a>
     </Link>
   );
 }

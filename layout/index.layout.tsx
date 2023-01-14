@@ -19,7 +19,6 @@ export default function HomeLayout({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavbarComponent />
-      <HeroBanner />
 
       {children}
 

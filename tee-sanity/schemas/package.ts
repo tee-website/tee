@@ -9,9 +9,12 @@ export default {
       title: 'Name',
     },
     {
-      name: 'background_image',
+      name: 'image',
       type: 'image',
       title: 'Background Image',
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'description',

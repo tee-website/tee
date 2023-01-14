@@ -22,7 +22,7 @@ export default function DrawerComponent({ children }: DrawerComponentProps) {
         onClick={onOpen}
         variant={"ghost"}
         colorScheme={"whiteAlpha"}
-        icon={<MenuFold size={28} />}
+        icon={<MenuFold />}
         aria-label={"Menu"}
       />
       <Drawer onClose={onClose} isOpen={isOpen}>

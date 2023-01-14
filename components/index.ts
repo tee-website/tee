@@ -1,2 +1,2 @@
-export { default as AboutMeComponent } from "./AboutMeComponent";
-export { default as ContactFormComponent } from "./ContactFormComponent";
+export { default as AboutMeComponent } from "./content.component";
+export { default as ContactFormComponent } from "./contact.component";

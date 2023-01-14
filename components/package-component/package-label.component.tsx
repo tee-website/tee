@@ -1,9 +1,16 @@
 import React from "react";
 
-import { useBoolean } from "@chakra-ui/react";
-import { Center, Box, VStack, Text } from "@chakra-ui/react";
+import {
+  Divider,
+  HStack,
+  useBoolean,
+  SimpleGrid,
+  Button,
+} from "@chakra-ui/react";
+import { Center, Box, VStack, Text, Stack } from "@chakra-ui/react";
 
-import Fade from "react-reveal/Fade";
+import Slide from "react-reveal/Slide";
+import { Cardioelectric } from "@icon-park/react";
 
 export type PackageProps = {
   onOpen: any;
@@ -21,28 +28,17 @@ export default function PackageLabelComponent({
   const [show, { off, toggle }] = useBoolean(false);
   return (
     <Box
-      onClick={onOpen}
       overflow={"hidden"}
       position={"relative"}
       _hover={{ cursor: "pointer" }}
     >
-      <Fade left opposite when={!show}>
-        <Center
-          borderColor={"gray.200"}
-          borderWidth={"thin"}
-          bg={"white"}
-          p={10}
-          h={"full"}
-        >
-          <VStack gap={2} textColor={"green.500"} textAlign={"center"}>
-            {icon}
-            <Text color={"gray.500"} fontWeight={"medium"} fontSize={"sm"}>
-              {packageName}
-            </Text>
-          </VStack>
-        </Center>
-      </Fade>
-
+      <Slide up when={!show}>
+        <Box h={40} bg={"blackAlpha.800"} p={5} color={"white"}>
+          <Text fontWeight={"bold"} fontSize={"lg"}>
+            {packageName}
+          </Text>
+        </Box>
+      </Slide>
       <Box
         top={0}
         bottom={0}
@@ -52,28 +48,22 @@ export default function PackageLabelComponent({
         onMouseEnter={toggle}
         onMouseLeave={off}
       >
-        <Fade left opposite when={show}>
-          <Box bg={`url('${image}')`} backgroundSize={"cover"}>
-            <Center
-              borderColor={"gray.200"}
-              borderWidth={"thin"}
-              p={10}
-              bg={"blackAlpha.700"}
-              h={"full"}
-            >
-              <VStack gap={2} textColor={"white"} textAlign={"center"}>
-                {icon}
-                <Text
-                  color={"whiteAlpha.800"}
-                  fontWeight={"medium"}
-                  fontSize={"sm"}
-                >
-                  {packageName}
-                </Text>
-              </VStack>
-            </Center>
+        <Slide down when={show}>
+          <Box h={40} bg={"green.400"} p={5} color={"white"}>
+            <Text fontWeight={"bold"} fontSize={"lg"}>
+              {packageName}
+            </Text>
+            <Box position={"absolute"} bottom={5} right={5}>
+              <Button
+                onClick={onOpen}
+                variant={"link"}
+                colorScheme={"whiteAlpha"}
+              >
+                Find out more
+              </Button>
+            </Box>
           </Box>
-        </Fade>
+        </Slide>
       </Box>
     </Box>
   );

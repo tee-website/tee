@@ -1,89 +1,61 @@
-import type { NextPage } from "next";
-import {
-  Box,
-  Text,
-  Heading,
-  SimpleGrid,
-  Center,
-  Divider,
-  HStack,
-} from "@chakra-ui/react";
-
-import * as Park from "@icon-park/react";
-import { ContactFormComponent, AboutMeComponent } from "../components";
-import { Phone } from "@icon-park/react";
+import { Box, Divider, Grid, GridItem } from "@chakra-ui/react";
 import HomeLayout from "../layout/index.layout";
 import PackageContainer from "../components/package-component";
 
 import React from "react";
+import { client } from "../lib/client";
+import HeroBanner from "../components/banner-component/hero-banner.component";
+import HeroSubBanner from "../components/banner-component/hero-sub-banner";
 
-export default function Home({ data }: { data: any }) {
-  console.log(data);
+import AboutComponent from "../components/about-component/about.component";
+import InstructorContainer from "../components/about-component/instructors.component";
+
+import ContentComponent from "../components/content.component";
+import ContactComponent from "../components/contact-component/contact.component";
+import ContentProvider from "../providers/content.provider";
+
+export default function Home({ content }: { content: any }) {
   return (
-    <>
+    <ContentProvider content={content[0]}>
       <HomeLayout>
-        <Box position={"relative"}>
-          <Center
-            borderRadius={5}
-            w={20}
-            h={20}
-            top={-10}
-            left={{ base: 10, md: 60 }}
-            transform={"rotate(45deg)"}
-            bg={"gray.100"}
-            position={"absolute"}
-            boxShadow={"lg"}
-            zIndex={"banner"}
-          >
-            <Box transform={"rotate(-45deg)"}>
-              <Park.Down size={32} />
-            </Box>
-          </Center>
+        <HeroBanner />
+        <HeroSubBanner />
 
-          <Box
-            position={"relative"}
-            py={{ base: 10, md: 20 }}
-            px={{ base: 10, md: 40, lg: 60 }}
-            bg={"gray.100"}
-            boxShadow={"xl"}
-          >
-            <PackageContainer />
+        <Grid
+          px={{ base: 5, md: 10, lg: 40 }}
+          templateColumns={"repeat(12,1fr)"}
+          templateRows={"repeat(12,1fr)"}
+          mb={5}
+          gap={2}
+        >
+          <GridItem colSpan={{ base: 12, md: 12, lg: 4 }} rowSpan={12}>
+            <AboutComponent />
+          </GridItem>
+          <GridItem colSpan={{ base: 12, md: 12, lg: 8 }} rowSpan={12}>
+            <InstructorContainer />
+          </GridItem>
+        </Grid>
+
+        <Box>
+          <Box px={{ base: 10, md: 20, lg: 40 }}>
+            <ContentComponent />
             <Divider my={5} />
-            <AboutMeComponent />
+            <PackageContainer packages={[]} />
+            <Divider my={5} />
+            <ContactComponent />
           </Box>
         </Box>
-
-        <Box bg={"blackAlpha.900"} py={10} px={{ base: 10, md: 40, lg: 60 }}>
-          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={5}>
-            <ContactFormComponent />
-
-            <Center>
-              <Box>
-                <Text color={"white"}>Contact Information</Text>
-                <Heading size={"lg"} color={"white"}>
-                  Nadine Henry-Thomas
-                </Heading>
-                <Text color={"yellow"} fontWeight={"bold"}>
-                  {"AHA CPR Instructor".toUpperCase()}
-                </Text>
-
-                <HStack as={"a"}>
-                  <Phone />
-                  <Text fontWeight={"bold"} color={"white"}>
-                    Contact: +1 (443) 414-0807
-                  </Text>
-                </HStack>
-              </Box>
-            </Center>
-          </SimpleGrid>
-        </Box>
       </HomeLayout>
-    </>
+    </ContentProvider>
   );
 }
 
 export const getServerSideProps = async () => {
+  // const pkg = await client.fetch('*[_type == "package"]');
+  const content = await client.fetch(
+    '*[_type == "content_version" && name == "development"]'
+  );
   return {
-    props: { data: {} },
+    props: { content },
   };
 };

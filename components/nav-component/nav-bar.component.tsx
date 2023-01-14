@@ -10,18 +10,17 @@ export default function NavbarComponent() {
     <Box
       position={"absolute"}
       top={{ base: 0, md: 10 }}
-      left={{ base: 0, md: 40, lg: 60 }}
-      right={{ base: 0, md: 60 }}
+      left={{ base: 0, md: 20, lg: 40 }}
+      right={{ base: 0, md: 20, lg: 40 }}
       px={{ base: 5, md: 5, lg: 10 }}
       py={2}
-      bg={"whiteAlpha.300"}
-      rounded={{ base: 0, md: 10 }}
-      boxShadow={"xl"}
+      bg={"whiteAlpha.700"}
+      boxShadow={"lg"}
       zIndex={"banner"}
     >
       <HStack justifyContent={"space-between"}>
         <Box>
-          <Heading color="white"> TEE </Heading>
+          <Heading color="green.500"> TEE </Heading>
         </Box>
 
         <HStack

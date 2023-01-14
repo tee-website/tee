@@ -4,29 +4,33 @@ export default {
   title: 'Instructor',
   fields: [
     {
-      name: 'firstname',
+      name: 'name',
       type: 'string',
-      title: 'First Name',
+      title: 'Instructor Name',
     },
     {
-      name: 'lastname',
-      type: 'string',
-      title: 'Last Name',
-    },
-    {
-      name: 'profile_image',
+      name: 'image',
       type: 'image',
-      title: 'Profile Image',
+      title: 'Image',
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'credentials',
       type: 'array',
+      title: 'Credentials',
       of: [
         {
           type: 'string',
         },
       ],
-      title: 'Credentials',
+    },
+
+    {
+      name: 'email',
+      title: 'Email',
+      type: 'string',
     },
   ],
 }
