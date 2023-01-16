@@ -5,19 +5,22 @@ export default {
 
   fields: [
     {
-      name: '',
+      name: 'title',
+      type: 'string',
+      title: 'Title',
     },
     {
-      name: 'about',
-      type: 'array',
-      of: [{type: 'block'}],
-      title: 'About Content',
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+      options: {
+        hotspot: true,
+      },
     },
     {
-      name: 'package',
-      title: 'Package Content',
-      type: 'array',
-      of: [{type: 'block'}],
+      name: 'content',
+      type: 'text',
+      title: 'Content',
     },
   ],
 }

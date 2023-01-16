@@ -21,5 +21,20 @@ export default {
       type: 'reference',
       to: [{type: 'about'}],
     },
+    {
+      name: 'content',
+      title: 'Content',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {
+              type: 'content',
+            },
+          ],
+        },
+      ],
+    },
   ],
 }

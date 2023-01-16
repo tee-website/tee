@@ -2,6 +2,10 @@ import { useContext, createContext } from "react";
 
 export type ContentProps = {
   banner: any;
+  about: any;
+  instructors: any[];
+  offerings: any[];
+  content: any[];
 };
 export const ContentContext = createContext<ContentProps | undefined>(
   undefined

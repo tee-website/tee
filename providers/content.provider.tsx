@@ -1,34 +1,27 @@
 import React from "react";
 import { ContentContext, ContentProps } from "./content.context";
-import { client } from "../lib/client";
 
 export type ContentProviderProps = {
   children: React.ReactNode;
   content: any;
+  instructors: any[];
+  offerings: any[];
 };
 
 export default function ContentProvider({
   children,
   content,
+  instructors,
+  offerings,
 }: ContentProviderProps) {
-  const [banner, setBanner] = React.useState<any>();
-
-  const getReference = async (type: string, ref: string) => {
-    return await client.fetch(`*[_type == "${type}" && _id == "${ref}"]`);
-  };
-
-  const handleSetBanner = async () => {
-    const banner = await getReference("banner", content?.banner._ref);
-    setBanner(banner);
-  };
-
+  console.log(content.content);
   const value: ContentProps = {
-    banner,
+    banner: content ? content.banner : null,
+    about: content ? content.about : null,
+    instructors,
+    offerings,
+    content: content.content ? content.content : [],
   };
-
-  React.useEffect(() => {
-    if (content) handleSetBanner();
-  }, [content]);
 
   return (
     <ContentContext.Provider value={value}>{children}</ContentContext.Provider>

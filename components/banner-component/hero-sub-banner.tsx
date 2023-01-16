@@ -1,5 +1,6 @@
 import React from "react";
-import { LoveAndHelp, MedicalBox } from "@icon-park/react";
+import { LoveAndHelp, HealthProducts } from "@icon-park/react";
+import { useContent } from "../../providers/content.context";
 import {
   Box,
   Center,
@@ -9,29 +10,59 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-export function BannerPoint() {
-  return (
-    <>
-      <Center
-        color={"white"}
-        p={2}
-        flexDirection={"column"}
-        justifyContent={"left"}
-      >
+function IconCases({ icon }: { icon: number }) {
+  switch (icon) {
+    case 0:
+      return (
         <LoveAndHelp
           theme="outline"
           size="72"
           strokeLinejoin="miter"
           strokeLinecap="butt"
         />
+      );
+
+    case 1:
+      return (
+        <HealthProducts
+          theme="outline"
+          size="72"
+          strokeLinejoin="miter"
+          strokeLinecap="butt"
+        />
+      );
+
+    default:
+      return (
+        <HealthProducts
+          theme="outline"
+          size="72"
+          strokeLinejoin="miter"
+          strokeLinecap="butt"
+        />
+      );
+  }
+}
+
+export function BannerPoint({ data }: { data: any }) {
+  return (
+    <>
+      <Center
+        position={"relative"}
+        color={"white"}
+        p={2}
+        flexDirection={"column"}
+        justifyContent={"left"}
+      >
+        <IconCases icon={data?.icon ?? 0} />
+
         <Heading fontWeight={"medium"} size={"md"}>
-          Lorem Ipsum Dolor
+          {data.title}
         </Heading>
-        <Text textAlign={"center"} w={{ base: "70%", md: "80%" }}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla dolore
-          voluptatem illum.
+        <Text mb={5} textAlign={"center"} w={{ base: "70%", md: "80%" }}>
+          {data.content}
         </Text>
-        <Divider mt={10} bg={"white"} />
+        <Divider mx={5} position={"absolute"} bottom={0} bg={"white"} />
       </Center>
     </>
   );
@@ -40,6 +71,8 @@ export function BannerPoint() {
 export default function HeroSubBanner() {
   const containerRef = React.useRef<HTMLDivElement | null>(null);
   const [responsiveHeight, setResponsiveHeight] = React.useState(0);
+
+  const { banner } = useContent();
 
   const handleResize = () => {
     const container = containerRef.current;
@@ -69,13 +102,13 @@ export default function HeroSubBanner() {
           p={10}
         >
           <SimpleGrid gap={5} columns={{ base: 1, md: 2, lg: 2, xl: 4 }}>
-            <BannerPoint />
-
-            <BannerPoint />
-
-            <BannerPoint />
-
-            <BannerPoint />
+            {banner && banner?.pointers ? (
+              banner.pointers.map((pointer: any, index: number) => {
+                return <BannerPoint key={pointer._id + index} data={pointer} />;
+              })
+            ) : (
+              <></>
+            )}
           </SimpleGrid>
         </Box>
       </Box>

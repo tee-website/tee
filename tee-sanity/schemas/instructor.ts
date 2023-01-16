@@ -32,5 +32,10 @@ export default {
       title: 'Email',
       type: 'string',
     },
+    {
+      name: 'public',
+      title: 'Show on website',
+      type: 'boolean',
+    },
   ],
 }

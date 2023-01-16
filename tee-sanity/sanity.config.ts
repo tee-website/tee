@@ -8,7 +8,7 @@ export default defineConfig({
   title: 'TEE Sanity',
 
   projectId: 'rn2xuz36',
-  dataset: 'production',
+  dataset: 'development',
 
   plugins: [deskTool(), visionTool()],
 

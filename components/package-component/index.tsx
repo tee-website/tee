@@ -8,12 +8,12 @@ import {
   Grid,
   GridItem,
 } from "@chakra-ui/react";
-import { Connect, User } from "@icon-park/react";
 import PackageComponent from "../package-component/package.component";
-import { client, urlFor } from "../../lib/client";
 import { Stack } from "@chakra-ui/react";
+import { useContent } from "../../providers/content.context";
 
-export default function PackageContainer({ packages }: { packages: any[] }) {
+export default function PackageContainer() {
+  const { offerings } = useContent();
   return (
     <Box>
       <Grid
@@ -49,12 +49,10 @@ export default function PackageContainer({ packages }: { packages: any[] }) {
         </GridItem>
         <GridItem colSpan={{ base: 12, lg: 4 }} rowSpan={12}>
           <SimpleGrid columns={1}>
-            {packages.map((_package) => (
+            {offerings.map((_package) => (
               <PackageComponent
-                key={_package.id}
+                key={_package._id}
                 packageName={_package.name}
-                image={_package?.image ? urlFor(_package.image) : ""}
-                icon={<></>}
               />
             ))}
           </SimpleGrid>

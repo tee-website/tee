@@ -7,23 +7,18 @@ import {
   SimpleGrid,
   Button,
 } from "@chakra-ui/react";
-import { Center, Box, VStack, Text, Stack } from "@chakra-ui/react";
+import { Center, Box, VStack, Text } from "@chakra-ui/react";
 
 import Slide from "react-reveal/Slide";
-import { Cardioelectric } from "@icon-park/react";
 
 export type PackageProps = {
   onOpen: any;
   packageName: string;
-  icon: React.ReactNode;
-  image: string;
 };
 
 export default function PackageLabelComponent({
   onOpen,
   packageName,
-  icon,
-  image,
 }: PackageProps) {
   const [show, { off, toggle }] = useBoolean(false);
   return (
