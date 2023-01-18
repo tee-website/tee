@@ -22,7 +22,9 @@
     "react-dom": "18.2.0",
     "react-horizontal-scrolling-menu": "^3.2.3",
     "react-reveal": "^1.2.2",
-    "recharts": "^2.1.14"
+    "recharts": "^2.1.14",
+    "smooth-scrollbar": "^8.8.1",
+    "smooth-scrollbar-react": "^2.4.1"
   },
   "devDependencies": {
     "@types/node": "18.8.3",

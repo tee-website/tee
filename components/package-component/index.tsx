@@ -13,7 +13,8 @@ import { Stack } from "@chakra-ui/react";
 import { useContent } from "../../providers/content.context";
 
 export default function PackageContainer() {
-  const { offerings } = useContent();
+  const { offerings, package_banner } = useContent();
+
   return (
     <Box>
       <Grid
@@ -37,23 +38,16 @@ export default function PackageContainer() {
             w={{ base: "full", md: "50%" }}
           >
             <Heading fontWeight={"light"} size={"lg"}>
-              Packages Offered
+              {package_banner?.title}
             </Heading>
-            <Text>
-              It is important that you are comfortable while {`${"you're "}`}
-              enrolled in our program, and so, we offer two packages for
-              prospective students to choose what compliments them best.
-            </Text>
+            <Text>{package_banner?.content}</Text>
             <Box mt={5} bg={"green.500"} h={1} w={"20%"} />
           </Stack>
         </GridItem>
         <GridItem colSpan={{ base: 12, lg: 4 }} rowSpan={12}>
           <SimpleGrid columns={1}>
             {offerings.map((_package) => (
-              <PackageComponent
-                key={_package._id}
-                packageName={_package.name}
-              />
+              <PackageComponent key={_package._id} data={_package} />
             ))}
           </SimpleGrid>
         </GridItem>

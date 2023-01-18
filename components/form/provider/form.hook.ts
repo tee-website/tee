@@ -33,8 +33,6 @@ export function useForm({
     })
   );
   const [rows] = useState<number>(numberOfRows ?? 1);
-  const [_onSubmit, setOnSubmit] =
-    useState<(data: any) => Promise<void> | void>();
 
   const [event, setEvent] = useState<{ count: number; type: FormEvent }>({
     count: 0,
@@ -47,6 +45,12 @@ export function useForm({
 
   const trigger = (_event: FormEvent) => {
     setEvent({ type: _event, count: event.count === 10 ? 0 : event.count + 1 });
+  };
+
+  const reset = () => {
+    const new_fields = fields.map((field) => field.__reset());
+    setFields(new_fields);
+    trigger("initialize");
   };
 
   const getValues = () => {
@@ -71,18 +75,18 @@ export function useForm({
     return field[0];
   };
 
-  const submitEvent = async (
-    e: React.FormEvent<HTMLFormElement> | null,
-    performSubmission = false
+  const handleSubmission = (
+    event: (data: { [key: string]: any }) => void,
+    updates = false
   ) => {
-    if (!performSubmission && e) {
-      e.preventDefault();
-      validation();
-      if (_errors === null) trigger("submit");
-      return;
-    }
-    if (_errors === null)
-      _onSubmit ? await _onSubmit(getValues()) : console.log(getValues());
+    return () => {
+      trigger("submit");
+      if (_errors === null) {
+        event(updates ? getUpdates() : getValues());
+      } else {
+        console.error(_errors);
+      }
+    };
   };
 
   const deriveEvent = (stack: string[]) => {
@@ -133,13 +137,12 @@ export function useForm({
     fields,
     getField,
     changeEvent,
-    submitEvent,
     options: { rows },
   });
 
   useEffect(() => {
     validation().then(() => {
-      if (event.type === "submit") submitEvent(null, true);
+      if (event.type === "submit") console.log(event.type);
     });
   }, [event]);
 
@@ -147,10 +150,7 @@ export function useForm({
     data: getValues(),
     updates: () => getUpdates(),
     render,
-    handleSubmit: (
-      onSubmit: (data: { [key: string]: any }) => Promise<void>
-    ) => {
-      setOnSubmit(onSubmit);
-    },
+    reset,
+    handleSubmission,
   };
 }

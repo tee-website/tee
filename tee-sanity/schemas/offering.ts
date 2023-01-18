@@ -8,5 +8,11 @@ export default {
       type: 'string',
       title: 'Name',
     },
+    {
+      name: 'modal',
+      title: 'Modal Content',
+      type: 'array',
+      of: [{type: 'table'}, {type: 'modal_block'}],
+    },
   ],
 }

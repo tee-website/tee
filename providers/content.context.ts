@@ -6,6 +6,7 @@ export type ContentProps = {
   instructors: any[];
   offerings: any[];
   content: any[];
+  package_banner: any;
 };
 export const ContentContext = createContext<ContentProps | undefined>(
   undefined

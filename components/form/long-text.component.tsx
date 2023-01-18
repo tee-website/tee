@@ -11,6 +11,7 @@ export default function LongTextComponent({ name }: { name: string }) {
       name={field.name}
       placeholder={field.placeholder}
       value={field.fieldValue}
+      borderRadius={0}
       onChange={(e) =>
         changeEvent(() => {
           return field.update(e.target.value);

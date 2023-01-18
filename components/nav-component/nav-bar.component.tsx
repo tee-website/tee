@@ -27,12 +27,7 @@ export default function NavbarComponent() {
           justifyContent={"space-around"}
           display={{ sm: "none", md: "flex" }}
         >
-          <SimpleGrid columns={4} gap={2}>
-            <NavItem link={"#"} label="Home" />
-            <NavItem link={"#"} label="Packages" />
-            <NavItem link={"#"} label="About Us" />
-            <NavItem link={"#"} label="Contact Us" />
-          </SimpleGrid>
+          <NavItem link={"#contact"} label="Contact Us" />
         </HStack>
 
         <Box display={{ sm: "unset", md: "none" }}>

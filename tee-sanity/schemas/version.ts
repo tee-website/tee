@@ -36,5 +36,12 @@ export default {
         },
       ],
     },
+
+    {
+      name: 'package',
+      title: 'Package Banner',
+      type: 'reference',
+      to: [{type: 'package_banner'}],
+    },
   ],
 }

@@ -1,11 +1,187 @@
-import { ModalBody } from "@chakra-ui/react";
+import {
+  Heading,
+  Box,
+  Tab,
+  TabList,
+  Tabs,
+  TabPanel,
+  TabPanels,
+  Divider,
+  Text,
+  Collapse,
+} from "@chakra-ui/react";
 import React from "react";
+import BlockPanelComponent from "../tab-components/block-panel.component";
+import TablePanelComponent from "../tab-components/table-panel.component";
+import { useState, useEffect } from "react";
+import { ApplicationMenu, CloseOne } from "@icon-park/react";
+import { Center, useDisclosure, IconButton } from "@chakra-ui/react";
+import { Scrollbar } from "smooth-scrollbar-react";
 
-export default function PackageModal() {
+export type TabPanelType = "block" | "table";
+
+export function TabComponent({ name }: { name: string }) {
+  return (
+    <Tab
+      border={"none"}
+      _active={{
+        color: "white",
+      }}
+      _focus={{
+        color: "white",
+      }}
+      _selected={{
+        color: "white",
+        bg: "green.400",
+      }}
+      justifyContent={"left"}
+      py={5}
+      px={10}
+    >
+      <Text fontSize={"lg"} fontWeight={"medium"}>
+        {name}
+      </Text>
+    </Tab>
+  );
+}
+
+export function TabPanelComponent({
+  content,
+}: {
+  content: { name: string; type: TabPanelType; data: any };
+}) {
+  switch (content.type) {
+    case "block":
+      return <BlockPanelComponent content={content} />;
+
+    case "table":
+      return <TablePanelComponent content={content} />;
+  }
+}
+
+function serialize(
+  modalContent: any[]
+): { name: string; type: TabPanelType; data: any }[] {
+  let result = modalContent.map((tabContent) => {
+    if (tabContent._type === "modal_block")
+      return {
+        type: "block",
+        data: tabContent.content,
+        name: tabContent?.name,
+      };
+
+    if (tabContent._type === "table")
+      return {
+        name: tabContent?.name,
+        type: "table",
+        data: tabContent.headings.map((heading: string, index: number) => {
+          return tabContent.content[index]
+            ? [heading, tabContent.content[index]]
+            : null;
+        }),
+      };
+
+    return null;
+  });
+
+  result = result
+    .filter((content) => content !== null)
+    .filter((content) => {
+      if (content?.type !== "table") return true;
+      return content.data;
+    });
+
+  return result as { name: string; type: TabPanelType; data: any }[];
+}
+
+export default function PackageModal({ data }: { data: any }) {
+  const [content, setContent] = useState(serialize(data?.modal ?? []));
+
+  const { isOpen, onToggle } = useDisclosure();
+
+  useEffect(() => {
+    setContent(serialize(data?.modal ?? []));
+  }, [data]);
+
   return (
     <>
-      this is the content of the package
-      <ModalBody></ModalBody>
+      <Box
+        py={5}
+        px={5}
+        position={"absolute"}
+        top={0}
+        left={0}
+        right={0}
+        bg={"blackAlpha.200"}
+      >
+        <Heading size={"lg"} fontWeight={"medium"} color={"green.600"}>
+          {data?.name}
+        </Heading>
+      </Box>
+
+      <Divider color={"green.400"} mt={70} />
+      <>
+        <Box h={"full"} overflowY={"scroll"}>
+          <Tabs orientation={"vertical"} h={"full"} position={"relative"}>
+            <IconButton
+              top={10}
+              right={10}
+              zIndex={"banner"}
+              cursor={"pointer"}
+              position={"absolute"}
+              borderRadius={"full"}
+              bg={"blackAlpha.800"}
+              colorScheme={"green"}
+              onClick={onToggle}
+              size={"lg"}
+              icon={
+                isOpen ? <CloseOne size={32} /> : <ApplicationMenu size={32} />
+              }
+              aria-label={""}
+            />
+
+            <Collapse in={isOpen}>
+              <Box
+                position={"absolute"}
+                top={0}
+                bottom={0}
+                bg={"whiteAlpha.900"}
+                h={"full"}
+                backdropFilter={"blur(5px)"}
+              >
+                <TabList
+                  borderRightWidth={"1px"}
+                  borderRightColor={"green.400"}
+                  h={"full"}
+                  overflowY={"hidden"}
+                >
+                  {content.map((content, index) => (
+                    <TabComponent key={index} name={content.name} />
+                  ))}
+                </TabList>
+              </Box>
+            </Collapse>
+
+            <TabPanels>
+              {content.map((content, key) => (
+                <TabPanel key={key}>
+                  <Heading
+                    ml={5}
+                    color={"green.400"}
+                    size={"lg"}
+                    fontWeight={"medium"}
+                  >
+                    {content.name}
+                  </Heading>
+                  <Divider my={5} />
+
+                  <TabPanelComponent content={content} />
+                </TabPanel>
+              ))}
+            </TabPanels>
+          </Tabs>
+        </Box>
+      </>
     </>
   );
 }

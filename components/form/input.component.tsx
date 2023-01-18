@@ -9,7 +9,6 @@ export default function InputComponent({ name }: { name: string }) {
 
   return (
     <Input
-      color={"white"}
       type={field.fieldType}
       name={field.name}
       placeholder={field.placeholder}

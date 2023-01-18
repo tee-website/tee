@@ -27,7 +27,7 @@ export default function PackageLabelComponent({
       position={"relative"}
       _hover={{ cursor: "pointer" }}
     >
-      <Slide up when={!show}>
+      <Slide left when={!show}>
         <Box h={40} bg={"blackAlpha.800"} p={5} color={"white"}>
           <Text fontWeight={"bold"} fontSize={"lg"}>
             {packageName}
@@ -43,17 +43,13 @@ export default function PackageLabelComponent({
         onMouseEnter={toggle}
         onMouseLeave={off}
       >
-        <Slide down when={show}>
-          <Box h={40} bg={"green.400"} p={5} color={"white"}>
+        <Slide right when={show}>
+          <Box onClick={onOpen} h={40} bg={"green.400"} p={5} color={"white"}>
             <Text fontWeight={"bold"} fontSize={"lg"}>
               {packageName}
             </Text>
             <Box position={"absolute"} bottom={5} right={5}>
-              <Button
-                onClick={onOpen}
-                variant={"link"}
-                colorScheme={"whiteAlpha"}
-              >
+              <Button variant={"link"} colorScheme={"whiteAlpha"}>
                 Find out more
               </Button>
             </Box>

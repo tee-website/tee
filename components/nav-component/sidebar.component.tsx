@@ -1,7 +1,7 @@
 import React from "react";
 import DrawerComponent from "./drawer.component";
 import NavItem from "./nav-item.component";
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid } from "@chakra-ui/react";
 
 export default function SidebarComponent() {
   return (

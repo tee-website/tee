@@ -21,7 +21,6 @@ export default function Home({
   data: any;
 }) {
   if (!content) return <></>;
-  console.log(offerings);
   return (
     <ContentProvider
       content={content[0]}

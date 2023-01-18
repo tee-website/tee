@@ -14,13 +14,13 @@ export default function ContentProvider({
   instructors,
   offerings,
 }: ContentProviderProps) {
-  console.log(content.content);
   const value: ContentProps = {
     banner: content ? content.banner : null,
     about: content ? content.about : null,
     instructors,
     offerings,
-    content: content.content ? content.content : [],
+    content: content?.content ? content.content : [],
+    package_banner: content?.package ?? {},
   };
 
   return (

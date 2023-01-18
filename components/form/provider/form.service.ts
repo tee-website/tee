@@ -209,6 +209,8 @@ export abstract class Field {
     this._placeholder = placeholder;
   }
 
+  abstract __reset(): Field;
+
   get placeholder() {
     return this._placeholder;
   }
@@ -276,6 +278,10 @@ export abstract class StringField extends Field {
     this._touched = true;
     this._value = value;
   };
+
+  __reset() {
+    return this.update("");
+  }
 }
 
 export class TextField extends StringField {
@@ -343,6 +349,10 @@ export class NumberField extends Field {
   initiate(): NumberSetting {
     return new NumberSetting(this);
   }
+
+  __reset(): Field {
+    return this.update("0");
+  }
 }
 
 export class DateField extends Field {
@@ -379,6 +389,11 @@ export class DateField extends Field {
   initiate(): DateSetting {
     return new DateSetting(this);
   }
+
+  __reset(): Field {
+    this._value = new Date();
+    return this.update(this.fieldValue);
+  }
 }
 
 export class DateTimeField extends DateField {
@@ -404,6 +419,11 @@ export class DateTimeField extends DateField {
   get minute() {
     const minute = this._value.getMinutes();
     return `${minute < 10 ? 0 : ""}${minute}`;
+  }
+
+  __reset(): Field {
+    this._value = new Date();
+    return this.update(this.fieldValue);
   }
 }
 
