@@ -66,7 +66,7 @@ function serialize(
         type: "block",
         data: tabContent.content,
         name: tabContent?.title,
-        key: tabContent?._key,
+        key: tabContent?._id,
       };
 
     if (tabContent._type === "table")
@@ -77,7 +77,7 @@ function serialize(
           content.heading,
           content.content,
         ]),
-        key: tabContent?._key,
+        key: tabContent?._id,
       };
 
     return null;

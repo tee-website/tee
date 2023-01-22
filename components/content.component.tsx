@@ -79,8 +79,8 @@ export default function ContentComponent() {
 
         <GridItem colSpan={{ base: 12, lg: 9 }} rowSpan={12}>
           <SimpleGrid columns={{ base: 1, md: 1, lg: 3 }}>
-            {content.map((item) => (
-              <Content key={item._key} data={item} />
+            {content.map((item, index) => (
+              <Content key={item._id + index} data={item} />
             ))}
           </SimpleGrid>
         </GridItem>
