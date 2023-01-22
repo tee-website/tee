@@ -38,7 +38,7 @@ export default function Home(data: { data: any }) {
         </Grid>
 
         <Box>
-          <Box px={{ base: 10, md: 20, lg: 40 }}>
+          <Box px={{ base: 5, md: 20, lg: 40 }}>
             <PackageContainer />
             <Divider my={5} />
             <ContentComponent />

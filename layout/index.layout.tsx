@@ -24,7 +24,7 @@ export default function HomeLayout({
 
       <Box as={"footer"} bg={"black"} p={5}>
         <Center>
-          <Text color={"gray.500"}>
+          <Text textAlign={"center"} color={"gray.500"}>
             All Rights Reserved by The Total Educational Experience ©2023
           </Text>
         </Center>

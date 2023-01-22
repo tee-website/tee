@@ -25,12 +25,12 @@ export default function NavbarComponent() {
 
         <HStack
           justifyContent={"space-around"}
-          display={{ sm: "none", md: "flex" }}
+          display={{ base: "none", sm: "none", md: "flex" }}
         >
           <NavItem link={"#contact"} label="Contact Us" />
         </HStack>
 
-        <Box display={{ sm: "unset", md: "none" }}>
+        <Box display={{ base: "unset", sm: "unset", md: "none" }}>
           <SidebarComponent />
         </Box>
       </HStack>

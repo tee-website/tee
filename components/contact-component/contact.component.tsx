@@ -10,7 +10,6 @@ import {
   useBoolean,
 } from "@chakra-ui/react";
 import { emailSender } from "../../lib/email";
-import { useContent } from "../../providers/content.context";
 import useFeedback from "../../hook/feedback.hook";
 
 export default function ContactComponent() {
@@ -59,7 +58,12 @@ export default function ContactComponent() {
       mb={10}
       columns={{ base: 1, md: 2, lg: 2 }}
     >
-      <Box border={"InactiveBorder"} bg={"whitesmoke"} p={10}>
+      <Box
+        border={"InactiveBorder"}
+        bg={"whitesmoke"}
+        py={10}
+        px={{ base: 3, md: 10 }}
+      >
         <Heading fontWeight={"light"} color={"green"} size={"xl"}>
           Apply now
         </Heading>

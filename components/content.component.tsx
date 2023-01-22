@@ -57,7 +57,7 @@ export default function ContentComponent() {
       <Grid
         templateColumns={"repeat(12, 1fr)"}
         templateRows={"repeat(12,1fr)"}
-        gap={5}
+        gap={2}
         pb={10}
       >
         <GridItem colSpan={{ base: 12, lg: 3 }} rowSpan={12}>
