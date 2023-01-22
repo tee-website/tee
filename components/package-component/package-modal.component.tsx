@@ -15,9 +15,7 @@ import BlockPanelComponent from "../tab-components/block-panel.component";
 import TablePanelComponent from "../tab-components/table-panel.component";
 import { useState, useEffect } from "react";
 import { ApplicationMenu, CloseOne } from "@icon-park/react";
-import { Center, useDisclosure, IconButton } from "@chakra-ui/react";
-import { Scrollbar } from "smooth-scrollbar-react";
-
+import { useDisclosure, IconButton } from "@chakra-ui/react";
 export type TabPanelType = "block" | "table";
 
 export function TabComponent({ name }: { name: string }) {
@@ -61,24 +59,25 @@ export function TabPanelComponent({
 
 function serialize(
   modalContent: any[]
-): { name: string; type: TabPanelType; data: any }[] {
+): { name: string; type: TabPanelType; data: any; key: string }[] {
   let result = modalContent.map((tabContent) => {
-    if (tabContent._type === "modal_block")
+    if (tabContent._type === "content")
       return {
         type: "block",
         data: tabContent.content,
-        name: tabContent?.name,
+        name: tabContent?.title,
+        key: tabContent?._key,
       };
 
     if (tabContent._type === "table")
       return {
-        name: tabContent?.name,
+        name: tabContent?.title,
         type: "table",
-        data: tabContent.headings.map((heading: string, index: number) => {
-          return tabContent.content[index]
-            ? [heading, tabContent.content[index]]
-            : null;
-        }),
+        data: tabContent.content.map((content: any) => [
+          content.heading,
+          content.content,
+        ]),
+        key: tabContent?._key,
       };
 
     return null;
@@ -91,7 +90,12 @@ function serialize(
       return content.data;
     });
 
-  return result as { name: string; type: TabPanelType; data: any }[];
+  return result as {
+    name: string;
+    type: TabPanelType;
+    data: any;
+    key: string;
+  }[];
 }
 
 export default function PackageModal({ data }: { data: any }) {
@@ -115,7 +119,7 @@ export default function PackageModal({ data }: { data: any }) {
         bg={"blackAlpha.200"}
       >
         <Heading size={"lg"} fontWeight={"medium"} color={"green.600"}>
-          {data?.name}
+          {data.name}
         </Heading>
       </Box>
 
@@ -155,16 +159,16 @@ export default function PackageModal({ data }: { data: any }) {
                   h={"full"}
                   overflowY={"hidden"}
                 >
-                  {content.map((content, index) => (
-                    <TabComponent key={index} name={content.name} />
+                  {content.map((content) => (
+                    <TabComponent key={content.key} name={content.name} />
                   ))}
                 </TabList>
               </Box>
             </Collapse>
 
             <TabPanels>
-              {content.map((content, key) => (
-                <TabPanel key={key}>
+              {content.map((content) => (
+                <TabPanel key={content.key}>
                   <Heading
                     ml={5}
                     color={"green.400"}

@@ -5,7 +5,6 @@ import PackageContainer from "../components/package-component";
 import React from "react";
 import { client } from "../lib/client";
 import HeroBanner from "../components/banner-component/hero-banner.component";
-import HeroSubBanner from "../components/banner-component/hero-sub-banner";
 
 import AboutComponent from "../components/about-component/about.component";
 import InstructorContainer from "../components/about-component/instructors.component";
@@ -15,23 +14,15 @@ import ContactComponent from "../components/contact-component/contact.component"
 import ContentProvider from "../providers/content.provider";
 import { to_dict } from "../utils/index";
 
-export default function Home({
-  data: { content, instructors, offerings },
-}: {
-  data: any;
-}) {
-  if (!content) return <></>;
+export default function Home(data: { data: any }) {
+  if (!data) return <></>;
   return (
-    <ContentProvider
-      content={content[0]}
-      instructors={instructors ?? []}
-      offerings={offerings ?? []}
-    >
+    <ContentProvider data={data}>
       <HomeLayout>
         <HeroBanner />
-        <HeroSubBanner />
 
         <Grid
+          mt={5}
           px={{ base: 5, md: 10, lg: 40 }}
           templateColumns={"repeat(12,1fr)"}
           templateRows={"repeat(12,1fr)"}
@@ -48,9 +39,9 @@ export default function Home({
 
         <Box>
           <Box px={{ base: 10, md: 20, lg: 40 }}>
-            <ContentComponent />
-            <Divider my={5} />
             <PackageContainer />
+            <Divider my={5} />
+            <ContentComponent />
             <Divider my={5} />
             <ContactComponent />
           </Box>
@@ -61,26 +52,30 @@ export default function Home({
 }
 
 export const getServerSideProps = async () => {
-  const _content = await client
-    .fetch('*[_type == "content_version" && name == "development"]')
+  const __content = await client
+    .fetch(
+      `*[ _type == "version" && name == "${process.env.NEXT_PUBLIC_VERSION_SET}" ]`
+    )
     .catch((err) => {
       console.log(err);
     });
 
-  const content = _content ? await to_dict(_content) : null;
-
-  const _instructors = await client
-    .fetch('*[_type == "instructor" && public == true]')
-    .catch((err) => console.log(err));
-  const instructors = _instructors ? await to_dict(_instructors) : null;
-
-  const _offerings = await client
-    .fetch('*[_type == "offering"]')
+  const __packages = await client
+    .fetch(`*[ _type == 'package' && available == true ]`)
     .catch((err) => console.log(err));
 
-  const offerings = _offerings ? await to_dict(_offerings) : null;
+  const __instructors = await client
+    .fetch(`*[ _type == "instructor" && public == true ]`)
+    .catch((err) => console.log(err));
 
-  return {
-    props: { data: { content, instructors, offerings } },
-  };
+  if (!__content) return { notFound: true };
+  if (__content.length === 0) return { notFound: true };
+
+  const data = await to_dict({
+    content: __content[0],
+    packages: __packages ?? [],
+    instructors: __instructors ?? [],
+  });
+
+  return { props: data };
 };

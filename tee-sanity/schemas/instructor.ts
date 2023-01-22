@@ -7,6 +7,7 @@ export default {
       name: 'name',
       type: 'string',
       title: 'Instructor Name',
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'image',
@@ -31,11 +32,17 @@ export default {
       name: 'email',
       title: 'Email',
       type: 'string',
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'public',
       title: 'Show on website',
       type: 'boolean',
+      validation: (Rule: any) => Rule.required(),
     },
   ],
+
+  initialValue: {
+    public: false,
+  },
 }

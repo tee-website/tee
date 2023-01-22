@@ -8,10 +8,7 @@ export default function SidebarComponent() {
     <>
       <DrawerComponent>
         <SimpleGrid gap={3} mt={20}>
-          <NavItem color="black" link="#" label="Home" />
-          <NavItem color="black" link="#" label="Packages" />
-          <NavItem color="black" link="#" label="About Us" />
-          <NavItem color="black" link="#" label="Contact Us" />
+          <NavItem color="black" link="#contact" label="Contact Us" />
         </SimpleGrid>
       </DrawerComponent>
     </>

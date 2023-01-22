@@ -1,5 +1,5 @@
 export default {
-  name: 'content_version',
+  name: 'version',
   title: 'Content Version',
   type: 'document',
 
@@ -8,22 +8,25 @@ export default {
       name: 'name',
       title: 'Version Name',
       type: 'string',
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'banner',
       title: 'Banner',
       type: 'reference',
       to: [{type: 'banner'}],
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'about',
       title: 'About',
       type: 'reference',
       to: [{type: 'about'}],
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: 'content',
-      title: 'Content',
+      title: 'BLS Content',
       type: 'array',
       of: [
         {
@@ -35,6 +38,12 @@ export default {
           ],
         },
       ],
+      validation: (Rule: any) =>
+        Rule.custom((content: any[]) => {
+          if (!content) return 'Required'
+          if (content.length === 3) return true
+          return 'Three (3) pointers on BLS Certification is required'
+        }),
     },
 
     {
@@ -42,6 +51,7 @@ export default {
       title: 'Package Banner',
       type: 'reference',
       to: [{type: 'package_banner'}],
+      validation: (Rule: any) => Rule.required(),
     },
   ],
 }

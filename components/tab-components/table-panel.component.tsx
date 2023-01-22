@@ -16,7 +16,10 @@ export default function TablePanelComponent({
               {items.map((item: any, index: any) => (
                 <Td key={index}>
                   {" "}
-                  <Text fontWeight={index === 0 ? "medium" : "unset"}>
+                  <Text
+                    fontSize={"lg"}
+                    fontWeight={index === 0 ? "medium" : "unset"}
+                  >
                     {item}
                   </Text>{" "}
                 </Td>

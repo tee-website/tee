@@ -1,48 +1,6 @@
 import React from "react";
-import { LoveAndHelp, HealthProducts } from "@icon-park/react";
 import { useContent } from "../../providers/content.context";
-import {
-  Box,
-  Center,
-  Divider,
-  Heading,
-  SimpleGrid,
-  Text,
-} from "@chakra-ui/react";
-
-function IconCases({ icon }: { icon: number }) {
-  switch (icon) {
-    case 0:
-      return (
-        <LoveAndHelp
-          theme="outline"
-          size="72"
-          strokeLinejoin="miter"
-          strokeLinecap="butt"
-        />
-      );
-
-    case 1:
-      return (
-        <HealthProducts
-          theme="outline"
-          size="72"
-          strokeLinejoin="miter"
-          strokeLinecap="butt"
-        />
-      );
-
-    default:
-      return (
-        <HealthProducts
-          theme="outline"
-          size="72"
-          strokeLinejoin="miter"
-          strokeLinecap="butt"
-        />
-      );
-  }
-}
+import { Box, Center, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 
 export function BannerPoint({ data }: { data: any }) {
   return (
@@ -50,19 +8,25 @@ export function BannerPoint({ data }: { data: any }) {
       <Center
         position={"relative"}
         color={"white"}
-        p={2}
         flexDirection={"column"}
         justifyContent={"left"}
       >
-        <IconCases icon={data?.icon ?? 0} />
-
-        <Heading fontWeight={"medium"} size={"md"}>
+        <Heading
+          color={"green.800"}
+          fontWeight={"medium"}
+          size={"md"}
+          textTransform={"uppercase"}
+        >
           {data.title}
         </Heading>
-        <Text mb={5} textAlign={"center"} w={{ base: "70%", md: "80%" }}>
+        <Text
+          fontSize={"lg"}
+          mb={5}
+          textAlign={"center"}
+          w={{ base: "80%", md: "90%" }}
+        >
           {data.content}
         </Text>
-        <Divider mx={5} position={"absolute"} bottom={0} bg={"white"} />
       </Center>
     </>
   );
@@ -101,10 +65,15 @@ export default function HeroSubBanner() {
           boxShadow={"lg"}
           p={10}
         >
-          <SimpleGrid gap={5} columns={{ base: 1, md: 2, lg: 2, xl: 4 }}>
+          <SimpleGrid
+            gap={2}
+            columns={{ base: 1, md: 2, lg: 2, xl: 4 }}
+            justifyContent={"center"}
+            alignContent={"center"}
+          >
             {banner && banner?.pointers ? (
-              banner.pointers.map((pointer: any, index: number) => {
-                return <BannerPoint key={pointer._id + index} data={pointer} />;
+              banner.pointers.map((pointer: any) => {
+                return <BannerPoint key={pointer._key} data={pointer} />;
               })
             ) : (
               <></>

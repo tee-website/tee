@@ -1,13 +1,20 @@
 import React from "react";
 import { useForm } from "../form/provider/form.hook";
 import { text, email, long } from "../form/provider/form.service";
-import { Box, Button, SimpleGrid, Heading, HStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  SimpleGrid,
+  Heading,
+  HStack,
+  useBoolean,
+} from "@chakra-ui/react";
 import { emailSender } from "../../lib/email";
 import { useContent } from "../../providers/content.context";
 import useFeedback from "../../hook/feedback.hook";
 
 export default function ContactComponent() {
-  const { instructors } = useContent();
+  const [isLoading, { on, off }] = useBoolean(false);
   const { render, reset, handleSubmission } = useForm({
     numberOfRows: 4,
     schema: {
@@ -28,9 +35,11 @@ export default function ContactComponent() {
   const { render: feedbackRender, triggerFeedback } = useFeedback();
 
   const sendMessage = async (data: any) => {
+    on();
     const res = await emailSender(data, "send-form").catch((err) =>
-      console.log(err)
+      console.error(err)
     );
+    off();
     if (res && res.status === 200) {
       reset();
       triggerFeedback("Successfully sent message", {
@@ -66,6 +75,7 @@ export default function ContactComponent() {
             onClick={handleSubmission(sendMessage)}
             variant={"ghost"}
             colorScheme={"green"}
+            isLoading={isLoading}
           >
             Send Message
           </Button>

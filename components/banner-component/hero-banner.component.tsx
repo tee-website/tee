@@ -22,7 +22,7 @@ export default function HeroBanner() {
           <Heading fontWeight={"bold"} size={"3xl"}>
             {banner?.bold_text}
           </Heading>
-          <Text>{banner?.content}</Text>
+          {/* <Text>{banner?.content}</Text> */}
         </Stack>
       </Box>
 

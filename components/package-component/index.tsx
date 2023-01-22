@@ -47,7 +47,7 @@ export default function PackageContainer() {
         <GridItem colSpan={{ base: 12, lg: 4 }} rowSpan={12}>
           <SimpleGrid columns={1}>
             {offerings.map((_package) => (
-              <PackageComponent key={_package._id} data={_package} />
+              <PackageComponent key={_package._key} data={_package} />
             ))}
           </SimpleGrid>
         </GridItem>
