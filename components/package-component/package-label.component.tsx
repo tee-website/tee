@@ -1,13 +1,6 @@
 import React from "react";
 
-import {
-  Divider,
-  HStack,
-  useBoolean,
-  SimpleGrid,
-  Button,
-} from "@chakra-ui/react";
-import { Center, Box, VStack, Text } from "@chakra-ui/react";
+import { useBoolean, Button, Box, Text } from "@chakra-ui/react";
 
 import Slide from "react-reveal/Slide";
 
