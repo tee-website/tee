@@ -4,7 +4,7 @@ import { client } from "../lib/client";
 export const _map = async (
   arr: any[],
   mapper: (value: any, index: number) => any
-) => {
+): Promise<any[]> => {
   let result = [];
 
   for (let index = 0; index < arr.length; index++) {
@@ -15,7 +15,7 @@ export const _map = async (
   return result;
 };
 
-export const to_dict = async (obj: any) => {
+export const to_dict = async (obj: any): Promise<any> => {
   if (isArray(obj)) {
     const result = await _map(obj, async (value) => {
       if (value._type !== "reference") return await to_dict(value);
