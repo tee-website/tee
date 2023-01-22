@@ -142,8 +142,10 @@ export function useForm({
 
   useEffect(() => {
     validation().then(() => {
-      if (event.type === "submit") console.log(event.type);
+      if (event.type === "submit") return;
     });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [event]);
 
   return {
