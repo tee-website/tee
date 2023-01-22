@@ -16,16 +16,19 @@ export function Content({ data }: { data: any }) {
   return (
     <HStack
       bg={"whitesmoke"}
+      _hover={{
+        bg: "blackAlpha.100",
+      }}
       position={"relative"}
       justifyContent={"space-evenly"}
       width={"full"}
     >
       <Box
         borderBottomColor={"green.400"}
-        borderBottomWidth={5}
+        borderBottomWidth={2}
         transition={".15s"}
         _hover={{
-          borderTopColor: "green.400",
+          borderTopColor: "green.800",
           borderTopWidth: 5,
           borderBottomColor: "none",
           borderBottomWidth: 0,
