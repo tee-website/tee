@@ -24,7 +24,9 @@
     "react-reveal": "^1.2.2",
     "recharts": "^2.1.14",
     "smooth-scrollbar": "^8.8.1",
-    "smooth-scrollbar-react": "^2.4.1"
+    "smooth-scrollbar-react": "^2.4.1",
+    "@types/react-html-email": "^3.0.1",
+    "react-html-email": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "18.8.3",

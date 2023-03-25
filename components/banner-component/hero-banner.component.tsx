@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, HStack, Heading, Stack, Text } from "@chakra-ui/react";
+import { Box, Heading, Stack } from "@chakra-ui/react";
 import { useContent } from "../../providers/content.context";
 import { urlFor } from "../../lib/client";
 
@@ -16,10 +16,10 @@ export default function HeroBanner() {
           justifyContent={"center"}
           w={{ base: "100%", md: "100%", lg: "60%" }}
         >
-          <Heading size={"3xl"} fontWeight={"light"}>
+          <Heading size={"2xl"} fontWeight={"light"}>
             {banner?.small_text}
           </Heading>
-          <Heading fontWeight={"bold"} size={"3xl"}>
+          <Heading fontWeight={"bold"} size={"2xl"}>
             {banner?.bold_text}
           </Heading>
           {/* <Text>{banner?.content}</Text> */}

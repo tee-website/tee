@@ -19,9 +19,9 @@ export default function Feedback({
   return (
     <Box
       maxW={{ base: "80vw", lg: "40vw" }}
-      color={"white"}
+      color={"black"}
       position={"fixed"}
-      bottom={10}
+      bottom={20}
       p={5}
       right={5}
       borderTopColor={
@@ -32,8 +32,8 @@ export default function Feedback({
           : "blue.400"
       }
       borderTopWidth={"5px"}
-      background={"blackAlpha.500"}
-      borderRadius={10}
+      background={"whiteAlpha.900"}
+      boxShadow={'dark-lg'}
       display={show ? "block" : "none"}
     >
       {title ? <Text fontWeight={"bold"}>{title}</Text> : <></>}

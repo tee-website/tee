@@ -14,7 +14,7 @@ export default function useFeedback() {
     type: "info",
   });
 
-  const [show, { on, off, toggle }] = useBoolean();
+  const [show, { on, off, toggle }] = useBoolean(false);
 
   const triggerFeedback = (
     message: string,
@@ -38,7 +38,8 @@ export default function useFeedback() {
     on();
     setTimeout(() => {
       off();
-    }, feedback?.timeout ?? 5000);
+    }, feedback?.timeout ?? 0);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [feedback]);
 
   return {
