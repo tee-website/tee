@@ -14,7 +14,7 @@ export default function HomeLayout({
   return (
     <>
       <Head>
-        <title>TTEE - The Total Educational Experience</title>
+        <title>2T2E - The Total Educational Experience</title>
         <meta name="description" content="" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

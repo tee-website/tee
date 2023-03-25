@@ -1,3 +1,8 @@
+import {
+  IContactEmail,
+  emailHtml,
+} from "../components/mail-component/mail.component";
+
 export const toFormData = (data: { [key: string]: any }) => {
   const result = new FormData();
   for (const key in data) {
@@ -6,26 +11,35 @@ export const toFormData = (data: { [key: string]: any }) => {
   return result;
 };
 
-export const emailSender = (
-  params: { [key: string]: any },
-  type: "send" | "send-form" = "send-form",
-  options: {
-    service_id?: string;
-    template_id?: string;
-    user_id?: string;
-    accessToken?: string;
-  } = {}
-): Promise<Response> => {
-  return fetch(`https://api.emailjs.com/api/v1.0/email/${type}`, {
-    method: "POST",
-    body: toFormData({
-      service_id:
-        options?.service_id ?? process.env.NEXT_PUBLIC_EMAIL_JS_SERVICE_ID,
-      template_id:
-        options?.template_id ??
-        process.env.NEXT_PUBLIC_EMAIL_JS_CONTACT_TEMPLATE_ID,
-      user_id: options?.user_id ?? process.env.NEXT_PUBLIC_EMAIL_JS_USER_ID,
-      ...params,
-    }),
-  });
+export interface ITemplateData {
+  client_name: string;
+  name: string;
+  message: string;
+  mobile: string;
+  to_email: string;
+  email: string;
+}
+
+export const emailSender = async (params: IContactEmail): Promise<any> => {
+  const config = {
+    SecureToken: process.env.NEXT_PUBLIC_MAILER_SECURE_TOKEN,
+    To: params.email,
+    From: "support@2t2e.life",
+    Subject: params.title,
+    Body: emailHtml(params),
+  };
+
+  console.log(config.Body);
+
+  console.log(params);
+
+  const emailHandler = async () => {
+    if (window?.Email) {
+      const response = await window?.Email.send(config);
+      return response;
+    }
+    throw new Error("No Email found in Window");
+  };
+
+  return await emailHandler();
 };
