@@ -13,8 +13,6 @@ export default function EmailComponent({
         Hello <b>{name}</b>,
       </p>
 
-      <br />
-
       <p>You got a new message from {clientName}</p>
 
       <br />
@@ -27,8 +25,9 @@ export default function EmailComponent({
 
       <p>
         You can contact {clientName}, by the contact information provided below.{' '}
-        <br />
-        <br />
+      </p>
+
+      <p>
         <b>Email </b>
         {clientEmail} <br />
         <b>Mobile </b>
@@ -37,7 +36,7 @@ export default function EmailComponent({
 
       <p>
         Warm Regards, <br />
-        <b>2t2e Tech Support Team</b>
+        <b>2T2E Tech. Support Team</b>
       </p>
     </>
   )

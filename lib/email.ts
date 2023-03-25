@@ -1,3 +1,5 @@
+declare const window: any;
+
 import {
   IContactEmail,
   emailHtml,
