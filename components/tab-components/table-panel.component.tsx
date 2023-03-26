@@ -1,5 +1,5 @@
 import React from 'react'
-import { TableContainer, Table, Tr, Tbody, Td, Text } from '@chakra-ui/react'
+import { Table, Tr, Tbody, Td, Text } from '@chakra-ui/react'
 import { TabPanelType } from '../package-component/package-modal.component'
 import BlockPanelComponent from './block-panel.component'
 
@@ -10,14 +10,14 @@ export default function TablePanelComponent({
 }) {
   const { data } = content
   return (
-    <TableContainer>
+    <>
       <Table variant={'striped'} orientation="vertical">
         <Tbody>
           {data.map((item: any[], index: number) => {
             return (
               <Tr key={index}>
                 <Td>
-                  <Text fontSize={'lg'} fontWeight={'medium'}>
+                  <Text fontSize={'md'} fontWeight={'medium'}>
                     {item[0]}
                   </Text>
                 </Td>
@@ -35,6 +35,6 @@ export default function TablePanelComponent({
           })}
         </Tbody>
       </Table>
-    </TableContainer>
+    </>
   )
 }

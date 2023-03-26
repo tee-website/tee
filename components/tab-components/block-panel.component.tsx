@@ -16,7 +16,7 @@ export default function BlockPanelComponent({
   content: { name: string; type: TabPanelType; data: any }
 }) {
   return (
-    <Box p={5}>
+    <Box>
       <PortableText
         value={content?.data ?? []}
         components={{
@@ -75,7 +75,7 @@ export default function BlockPanelComponent({
               </Heading>
             ),
 
-            p: ({ children }) => <Text my={2}>{children}</Text>,
+            p: ({ children }) => <Text my={2} fontSize={'md'}>{children}</Text>,
           },
         }}
       />

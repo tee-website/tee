@@ -50,7 +50,11 @@ export function TabPanelComponent({
 }) {
   switch (content.type) {
     case 'block':
-      return <BlockPanelComponent content={content} />
+      return (
+        <Box p={10}>
+          <BlockPanelComponent content={content} />
+        </Box>
+      )
 
     case 'table':
       return <TablePanelComponent content={content} />
@@ -176,10 +180,10 @@ export default function PackageModal({ data }: { data: any }) {
                     color={'green.400'}
                     size={'lg'}
                     fontWeight={'medium'}
+                    my={10}
                   >
                     {content.name}
                   </Heading>
-                  <Divider my={5} />
 
                   <TabPanelComponent content={content} />
                 </TabPanel>
