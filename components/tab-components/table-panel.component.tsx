@@ -1,33 +1,40 @@
-import React from "react";
-import { TableContainer, Table, Tr, Tbody, Td, Text } from "@chakra-ui/react";
-import { TabPanelType } from "../package-component/package-modal.component";
+import React from 'react'
+import { TableContainer, Table, Tr, Tbody, Td, Text } from '@chakra-ui/react'
+import { TabPanelType } from '../package-component/package-modal.component'
+import BlockPanelComponent from './block-panel.component'
 
 export default function TablePanelComponent({
   content,
 }: {
-  content: { name: string; type: TabPanelType; data: any };
+  content: { name: string; type: TabPanelType; data: any }
 }) {
+  const { data } = content
   return (
     <TableContainer>
-      <Table variant={"striped"} orientation="vertical">
+      <Table variant={'striped'} orientation="vertical">
         <Tbody>
-          {content.data.map((items: any, index: number) => (
-            <Tr key={index}>
-              {items.map((item: any, index: any) => (
-                <Td key={index}>
-                  {" "}
-                  <Text
-                    fontSize={"lg"}
-                    fontWeight={index === 0 ? "medium" : "unset"}
-                  >
-                    {item}
-                  </Text>{" "}
+          {data.map((item: any[], index: number) => {
+            return (
+              <Tr key={index}>
+                <Td>
+                  <Text fontSize={'lg'} fontWeight={'medium'}>
+                    {item[0]}
+                  </Text>
                 </Td>
-              ))}
-            </Tr>
-          ))}
+                <Td>
+                  <BlockPanelComponent
+                    content={{
+                      data: item[1],
+                      name: 'Table Item',
+                      type: 'block',
+                    }}
+                  />
+                </Td>
+              </Tr>
+            )
+          })}
         </Tbody>
       </Table>
     </TableContainer>
-  );
+  )
 }
