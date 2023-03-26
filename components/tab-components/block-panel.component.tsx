@@ -2,22 +2,18 @@ import {
   Box,
   Heading,
   Text,
-  List,
-  HStack,
   ListItem,
-  ListIcon,
   OrderedList,
   UnorderedList,
-} from "@chakra-ui/react";
-import React from "react";
-import { TabPanelType } from "../package-component/package-modal.component";
-import { PortableText } from "@portabletext/react";
-import { ArrowRightUp, ListNumbers } from "@icon-park/react";
+} from '@chakra-ui/react'
+import React from 'react'
+import { TabPanelType } from '../package-component/package-modal.component'
+import { PortableText } from '@portabletext/react'
 
 export default function BlockPanelComponent({
   content,
 }: {
-  content: { name: string; type: TabPanelType; data: any };
+  content: { name: string; type: TabPanelType; data: any }
 }) {
   return (
     <Box p={5}>
@@ -44,37 +40,37 @@ export default function BlockPanelComponent({
 
           block: {
             h1: ({ children }) => (
-              <Heading my={3} fontWeight={"medium"} size={"4xl"}>
+              <Heading my={3} fontWeight={'medium'} size={'4xl'}>
                 {children}
               </Heading>
             ),
 
             h2: ({ children }) => (
-              <Heading my={3} fontWeight={"medium"} size={"xl"}>
+              <Heading my={3} fontWeight={'medium'} size={'xl'}>
                 {children}
               </Heading>
             ),
 
             h3: ({ children }) => (
-              <Heading my={3} fontWeight={"medium"} size={"lg"}>
+              <Heading my={3} fontWeight={'medium'} size={'lg'}>
                 {children}
               </Heading>
             ),
 
             h4: ({ children }) => (
-              <Heading my={3} fontWeight={"medium"} size={"md"}>
+              <Heading my={3} fontWeight={'medium'} size={'md'}>
                 {children}
               </Heading>
             ),
 
             h5: ({ children }) => (
-              <Heading my={3} fontWeight={"semibold"} size={"md"}>
+              <Heading my={3} fontWeight={'semibold'} size={'md'}>
                 {children}
               </Heading>
             ),
 
             h6: ({ children }) => (
-              <Heading my={3} fontWeight={"medium"} size={"md"}>
+              <Heading my={3} fontWeight={'medium'} size={'md'}>
                 {children}
               </Heading>
             ),
@@ -84,5 +80,5 @@ export default function BlockPanelComponent({
         }}
       />
     </Box>
-  );
+  )
 }
