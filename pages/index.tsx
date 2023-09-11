@@ -41,11 +41,11 @@ export default function Home(data: { data: any }) {
 
           <Box>
             <Box px={{ base: 5, md: 20, lg: 40 }}>
-              <PackageContainer />
-              <Divider my={5} />
               <ContentComponent />
               <Divider my={5} />
-              <ContactComponent />
+              <PackageContainer />
+
+              <Divider my={5} />
             </Box>
           </Box>
         </HomeLayout>

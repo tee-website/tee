@@ -1,75 +1,72 @@
-import {
-  Box,
-  Divider,
-  Image,
-  Text,
-  Heading,
-  SimpleGrid,
-} from "@chakra-ui/react";
-import React from "react";
+import { Box, Divider, Image, Text, Heading, Flex } from '@chakra-ui/react'
+import React from 'react'
 
-import { ScrollMenu } from "react-horizontal-scrolling-menu";
-import { useContent } from "../../providers/content.context";
-import { urlFor } from "../../lib/client";
-import { isArray } from "lodash";
+import { ScrollMenu } from 'react-horizontal-scrolling-menu'
+import { useContent } from '../../providers/content.context'
+import { urlFor } from '../../lib/client'
+import { isArray } from 'lodash'
 
 export function Instructor({ instructor }: any) {
   return (
-    <Box bg={"white"} mx={2} maxWidth={"250px"}>
-      <Box h={60} bg={"blackAlpha.400"} overflow={"hidden"}>
+    <Box data-group bg={'white'} mx={2} maxWidth={'250px'}>
+      <Box borderRadius={5} h={60} bg={'blackAlpha.400'} overflow={'hidden'}>
         {instructor.image ? (
           <Image alt={instructor.name} src={urlFor(instructor.image)} />
         ) : (
           <></>
         )}
       </Box>
-      <Box p={5}>
-        <Text fontWeight={"medium"}>{instructor?.name}</Text>
+      <Box pt={5} px={2}>
+        <Text fontWeight={'medium'}>{instructor?.name}</Text>
         {isArray(instructor.credentials) &&
         instructor.credentials.length > 0 ? (
-          <Text color={"yellow.600"} noOfLines={1}>
+          <Flex gap={1}>
             {instructor.credentials.map((credential: string, index: number) => (
-              <span key={index}>
+              <Box
+                key={index}
+                fontSize={'10px'}
+                p={1}
+                borderRadius={5}
+                bg={'blackAlpha.300'}
+                color={'black'}
+                whiteSpace={'nowrap'}
+                fontWeight={'medium'}
+              >
                 {credential}
-                {"  "}{" "}
-              </span>
+              </Box>
             ))}
-          </Text>
+          </Flex>
         ) : (
           <></>
         )}
 
-        <Divider my={2} />
+        <Divider my={0.5} />
 
         <Text
-          as={"a"}
+          as={'a'}
           href={`mailto: ${instructor.email}`}
-          fontWeight={"light"}
-          color={"blue.500"}
-          fontStyle={"italic"}
+          fontWeight={'medium'}
+          color={'blue.500'}
+          fontSize={'xs'}
+          fontStyle={'italic'}
         >
           {instructor?.email}
         </Text>
       </Box>
     </Box>
-  );
+  )
 }
 
 export default function InstructorContainer() {
-  const { instructors } = useContent();
+  const { instructors } = useContent()
   return (
-    <Box py={10} px={5} color={"gray.600"} bg={"whitesmoke"} h={"full"}>
+    <Box py={10} px={5} color={'gray.600'} bg={'whitesmoke'} h={'full'}>
       <Heading my={5}>Our Team</Heading>
       <ScrollMenu>
-        {/* <SimpleGrid
-          columns={instructors.length < 4 ? 4 : instructors.length}
-          gap={2}
-        > */}
         {instructors.map((instructor) => (
           <Instructor key={instructor._id} instructor={instructor} />
         ))}
-        {/* </SimpleGrid> */}
       </ScrollMenu>
     </Box>
-  );
+  )
 }

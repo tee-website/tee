@@ -1,10 +1,12 @@
-import { HStack, Box, Image } from '@chakra-ui/react'
+import { HStack, Box, Image, Button, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import NavItem from './nav-item.component'
+import { ContactModel } from '../contact-modal/contact-modal'
 
 export type NavbarProps = {}
 
 export default function NavbarComponent() {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <Box
       position={'absolute'}
@@ -13,26 +15,32 @@ export default function NavbarComponent() {
       right={{ base: 0, md: 20, lg: 40 }}
       px={{ base: 5, md: 5, lg: 10 }}
       py={4}
-      bg={'whiteAlpha.900'}
-      boxShadow={'lg'}
       zIndex={'banner'}
     >
       <HStack justifyContent={'space-between'}>
-        <Box>
+        <Box as="a" href="#">
           <Image src={'./logo.png'} alt={'TEE logo'} h={8} />
         </Box>
 
-        <HStack
-          justifyContent={'space-around'}
-          // display={{ base: "none", sm: "none", md: "flex" }}
-        >
-          <NavItem link={'#contact'} label="Contact Us" />
+        <HStack justifyContent={'space-around'}>
+          <Button
+            data-group
+            borderRadius={'full'}
+            px={10}
+            transition={'0.25s'}
+            _hover={{
+              background: 'green.400',
+              color: 'white',
+            }}
+            colorScheme="whiteAlpha"
+            fontWeight={'medium'}
+            onClick={onOpen}
+          >
+            {'Contact Us'}
+          </Button>
         </HStack>
-
-        {/* <Box display={{ base: "unset", sm: "unset", md: "none" }}>
-          <SidebarComponent />
-        </Box> */}
       </HStack>
+      <ContactModel isOpen={isOpen} onClose={onClose} />
     </Box>
   )
 }

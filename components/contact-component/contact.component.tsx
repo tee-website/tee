@@ -63,8 +63,6 @@ export default function ContactComponent() {
 
     const responses = res.filter((el: any) => el)
 
-    console.log(responses)
-
     off()
     if (responses.length > 0 && res[0] === 'OK') {
       reset()
@@ -79,12 +77,7 @@ export default function ContactComponent() {
   }
 
   return (
-    <SimpleGrid
-      id="contact"
-      boxShadow={'xl'}
-      mb={10}
-      columns={{ base: 1, md: 2, lg: 2 }}
-    >
+    <SimpleGrid id="contact" mb={10} columns={{ base: 1, md: 2, lg: 2 }}>
       <Box
         border={'InactiveBorder'}
         bg={'whitesmoke'}
@@ -123,6 +116,7 @@ export default function ContactComponent() {
         bgPosition={'center'}
         p={49}
         display={{ base: 'none', md: 'unset' }}
+        borderRadius={20}
       />
     </SimpleGrid>
   )
