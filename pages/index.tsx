@@ -55,20 +55,25 @@ export default function Home(data: { data: any }) {
 }
 
 export const getServerSideProps = async () => {
+  const version = process.env.NEXT_PUBLIC_VERSION_SET
   const __content = await client
-    .fetch(
-      `*[ _type == "version" && name == "${process.env.NEXT_PUBLIC_VERSION_SET}" ]`,
-    )
+    .fetch(`*[ _type == "version" && name == "${version}" ]`)
     .catch((err) => {
       console.log(err)
     })
 
+  let packagesQuery = `*[ _type == 'package' && available == true ]`
+  if (version === 'preview') packagesQuery = `*[_type == 'package']`
+
   const __packages = await client
-    .fetch(`*[ _type == 'package' && available == true ]`)
+    .fetch(packagesQuery)
     .catch((err) => console.log(err))
 
+  let instructorsQuery = `*[ _type == 'instructor' && public == true ]`
+  if (version === 'preview') instructorsQuery = `*[_type == 'instructor']`
+
   const __instructors = await client
-    .fetch(`*[ _type == "instructor" && public == true ]`)
+    .fetch(instructorsQuery)
     .catch((err) => console.log(err))
 
   if (!__content) return { notFound: true }
