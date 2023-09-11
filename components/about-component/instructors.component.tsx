@@ -8,7 +8,7 @@ import { isArray } from 'lodash'
 
 export function Instructor({ instructor }: any) {
   return (
-    <Box data-group bg={'white'} mx={2} maxWidth={'250px'}>
+    <Box data-group mx={2} maxWidth={'250px'}>
       <Box borderRadius={5} h={60} bg={'blackAlpha.400'} overflow={'hidden'}>
         {instructor.image ? (
           <Image alt={instructor.name} src={urlFor(instructor.image)} />
@@ -16,7 +16,7 @@ export function Instructor({ instructor }: any) {
           <></>
         )}
       </Box>
-      <Box pt={5} px={2}>
+      <Box pt={5}>
         <Text fontWeight={'medium'}>{instructor?.name}</Text>
         {isArray(instructor.credentials) &&
         instructor.credentials.length > 0 ? (
@@ -25,10 +25,11 @@ export function Instructor({ instructor }: any) {
               <Box
                 key={index}
                 fontSize={'10px'}
-                p={1}
+                py={1}
+                px={2}
                 borderRadius={5}
-                bg={'blackAlpha.300'}
-                color={'black'}
+                bg={'blackAlpha.100'}
+                color={'green'}
                 whiteSpace={'nowrap'}
                 fontWeight={'medium'}
               >
@@ -60,7 +61,7 @@ export function Instructor({ instructor }: any) {
 export default function InstructorContainer() {
   const { instructors } = useContent()
   return (
-    <Box py={10} px={5} color={'gray.600'} bg={'whitesmoke'} h={'full'}>
+    <Box py={10} px={5} color={'gray.600'} h={'full'}>
       <Heading my={5}>Our Team</Heading>
       <ScrollMenu>
         {instructors.map((instructor) => (

@@ -8,14 +8,11 @@ import {
   TabPanels,
   Divider,
   Text,
-  Collapse,
 } from '@chakra-ui/react'
 import React from 'react'
 import BlockPanelComponent from '../tab-components/block-panel.component'
 import TablePanelComponent from '../tab-components/table-panel.component'
 import { useState, useEffect } from 'react'
-import { ApplicationMenu, CloseOne } from '@icon-park/react'
-import { useDisclosure, IconButton } from '@chakra-ui/react'
 export type TabPanelType = 'block' | 'table'
 
 export function TabComponent({ name }: { name: string }) {
@@ -32,13 +29,12 @@ export function TabComponent({ name }: { name: string }) {
         color: 'white',
         bg: 'green.400',
       }}
+      color={'gray.500'}
       justifyContent={'left'}
-      py={5}
-      px={10}
+      py={4}
+      px={7}
     >
-      <Text fontSize={'lg'} fontWeight={'medium'}>
-        {name}
-      </Text>
+      <Text fontSize={'lg'}>{name}</Text>
     </Tab>
   )
 }
@@ -51,7 +47,7 @@ export function TabPanelComponent({
   switch (content.type) {
     case 'block':
       return (
-        <Box p={10}>
+        <Box px={10} py={2}>
           <BlockPanelComponent content={content} />
         </Box>
       )
@@ -105,8 +101,6 @@ function serialize(
 export default function PackageModal({ data }: { data: any }) {
   const [content, setContent] = useState(serialize(data?.modal ?? []))
 
-  const { isOpen, onToggle } = useDisclosure()
-
   useEffect(() => {
     setContent(serialize(data?.modal ?? []))
   }, [data])
@@ -129,62 +123,21 @@ export default function PackageModal({ data }: { data: any }) {
 
       <Divider color={'green.400'} mt={70} />
       <>
-        <Box h={'full'} overflowY={'scroll'}>
-          <Tabs orientation={'vertical'} h={'full'} position={'relative'}>
-            <IconButton
-              top={10}
-              right={10}
-              zIndex={'banner'}
-              cursor={'pointer'}
-              position={'absolute'}
-              borderRadius={'full'}
-              bg={'blackAlpha.800'}
-              colorScheme={'green'}
-              onClick={onToggle}
-              size={'lg'}
-              icon={
-                isOpen ? <CloseOne size={32} /> : <ApplicationMenu size={32} />
-              }
-              aria-label={''}
-            />
+        <Box h={'full'}>
+          <Tabs h={'full'}>
+            <TabList
+              borderRightWidth={'1px'}
+              borderRightColor={'green.400'}
+              overflowY={'hidden'}
+            >
+              {content.map((content) => {
+                return <TabComponent key={content.key} name={content.name} />
+              })}
+            </TabList>
 
-            <Collapse in={isOpen}>
-              <Box
-                position={'absolute'}
-                top={0}
-                bottom={0}
-                bg={'whiteAlpha.900'}
-                h={'full'}
-                backdropFilter={'blur(5px)'}
-              >
-                <TabList
-                  borderRightWidth={'1px'}
-                  borderRightColor={'green.400'}
-                  h={'full'}
-                  overflowY={'hidden'}
-                >
-                  {content.map((content) => {
-                    return (
-                      <TabComponent key={content.key} name={content.name} />
-                    )
-                  })}
-                </TabList>
-              </Box>
-            </Collapse>
-
-            <TabPanels>
+            <TabPanels h={'full'} overflowY={'scroll'} pb={10}>
               {content.map((content) => (
-                <TabPanel key={content.key}>
-                  <Heading
-                    ml={5}
-                    color={'green.400'}
-                    size={'lg'}
-                    fontWeight={'medium'}
-                    my={10}
-                  >
-                    {content.name}
-                  </Heading>
-
+                <TabPanel py={10} key={content.key}>
                   <TabPanelComponent content={content} />
                 </TabPanel>
               ))}

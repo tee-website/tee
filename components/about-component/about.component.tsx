@@ -1,32 +1,25 @@
-import {
-  Box,
-  Heading,
-  List,
-  ListIcon,
-  ListItem,
-  Text,
-  SimpleGrid,
-} from "@chakra-ui/react";
-import React from "react";
-import { useContent } from "../../providers/content.context";
+import { Box, Heading, SimpleGrid } from '@chakra-ui/react'
+import React from 'react'
+import { useContent } from '../../providers/content.context'
 
-import { PortableText } from "@portabletext/react";
+import { PortableText } from '@portabletext/react'
 
 export default function AboutComponent() {
-  const { about } = useContent();
+  const { about } = useContent()
   return (
     <>
       <Box
+        cursor={'default'}
         py={10}
         px={5}
-        bg={"whitesmoke"}
-        color={"gray.600"}
-        h={"full"}
-        display={"flex"}
-        alignItems={"center"}
+        bg={'whitesmoke'}
+        color={'gray.600'}
+        h={'full'}
+        display={'flex'}
+        alignItems={'center'}
       >
         <Box>
-          <Heading my={10}>{about?.title ?? ""}</Heading>
+          <Heading my={10}>{about?.title ?? ''}</Heading>
 
           <Box>
             <PortableText
@@ -46,5 +39,5 @@ export default function AboutComponent() {
         </Box>
       </Box>
     </>
-  );
+  )
 }

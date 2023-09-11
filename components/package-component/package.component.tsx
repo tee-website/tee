@@ -4,45 +4,47 @@ import {
   ModalContent,
   ModalCloseButton,
   useDisclosure,
-} from "@chakra-ui/react";
-import React from "react";
-import PackageLabelComponent from "./package-label.component";
-import PackageModal from "./package-modal.component";
+} from '@chakra-ui/react'
+import React from 'react'
+import PackageLabelComponent from './package-label.component'
+import PackageModal from './package-modal.component'
 
 export type PackageProps = {
   data: {
-    name: string;
-  };
-};
+    name: string
+  }
+}
 
 export default function PackageComponent({ data }: PackageProps) {
-  const { onOpen, onClose, isOpen } = useDisclosure();
+  const { onOpen, onClose, isOpen } = useDisclosure()
   return (
     <>
       <PackageLabelComponent packageName={data?.name} onOpen={onOpen} />
       <Modal
-        size={{ base: "full", lg: "6xl" }}
+        size={{ base: 'full', lg: 'full' }}
         onClose={onClose}
         isOpen={isOpen}
       >
         <ModalOverlay />
         <ModalContent
-          position={"fixed"}
+          position={'fixed'}
           top={{ base: 0, lg: 0 }}
           bottom={{ base: 0, lg: 0 }}
           borderRadius={0}
-          height={{ base: "unset", lg: "90vh" }}
-          overflow={"hidden"}
+          height={{ base: 'unset', lg: '90vh' }}
+          overflow={'hidden'}
         >
           <ModalCloseButton
-            zIndex={"sticky"}
-            position={"absolute"}
+            zIndex={'sticky'}
+            position={'absolute'}
             top={5}
             right={5}
+            borderRadius={'full'}
+            colorScheme="whiteAlpha"
           />
           <PackageModal data={data} />
         </ModalContent>
       </Modal>
     </>
-  );
+  )
 }

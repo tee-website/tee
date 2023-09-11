@@ -11,7 +11,6 @@ import AboutComponent from '../components/about-component/about.component'
 import InstructorContainer from '../components/about-component/instructors.component'
 
 import ContentComponent from '../components/content.component'
-import ContactComponent from '../components/contact-component/contact.component'
 import ContentProvider from '../providers/content.provider'
 import { to_dict } from '../utils/index'
 
@@ -41,10 +40,10 @@ export default function Home(data: { data: any }) {
 
           <Box>
             <Box px={{ base: 5, md: 20, lg: 40 }}>
+              <Divider my={5} />
               <ContentComponent />
               <Divider my={5} />
               <PackageContainer />
-
               <Divider my={5} />
             </Box>
           </Box>

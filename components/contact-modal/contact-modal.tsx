@@ -3,7 +3,6 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react'
 import ContactComponent from '../contact-component/contact.component'
@@ -16,10 +15,10 @@ interface ContactModalProps {
 export function ContactModel({ isOpen, onClose }: ContactModalProps) {
   return (
     <>
-      <Modal size={'5xl'} isOpen={isOpen} onClose={onClose}>
+      <Modal size={'6xl'} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
 
-        <ModalContent pt={10}>
+        <ModalContent bg={'whitesmoke'} pt={10}>
           <ModalCloseButton colorScheme="whiteAlpha" borderRadius={'full'} />
 
           <ModalBody>

@@ -78,12 +78,7 @@ export default function ContactComponent() {
 
   return (
     <SimpleGrid id="contact" mb={10} columns={{ base: 1, md: 2, lg: 2 }}>
-      <Box
-        border={'InactiveBorder'}
-        bg={'whitesmoke'}
-        py={10}
-        px={{ base: 3, md: 10 }}
-      >
+      <Box border={'InactiveBorder'} py={10} px={{ base: 3, md: 10 }}>
         <Heading fontWeight={'light'} color={'green'} size={'xl'}>
           Apply now
         </Heading>
@@ -101,7 +96,7 @@ export default function ContactComponent() {
             colorScheme={'green'}
             isLoading={isLoading}
           >
-            Send Message
+            Send
           </Button>
         </HStack>
 

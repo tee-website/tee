@@ -1,6 +1,5 @@
 import { HStack, Box, Image, Button, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
-import NavItem from './nav-item.component'
 import { ContactModel } from '../contact-modal/contact-modal'
 
 export type NavbarProps = {}
@@ -26,7 +25,7 @@ export default function NavbarComponent() {
           <Button
             data-group
             borderRadius={'full'}
-            px={10}
+            px={5}
             transition={'0.25s'}
             _hover={{
               background: 'green.400',
