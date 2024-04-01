@@ -30,7 +30,7 @@ export default function PackageContainer() {
           bg={'blackAlpha.400'}
           color={'white'}
           p={5}
-          colSpan={{ base: 12, lg: 8 }}
+          colSpan={{ base: 12, lg: 6 }}
           rowSpan={12}
         >
           <Stack
@@ -46,8 +46,8 @@ export default function PackageContainer() {
             <Box mt={5} bg={'green.500'} h={1} w={'20%'} />
           </Stack>
         </GridItem>
-        <GridItem colSpan={{ base: 12, lg: 4 }} rowSpan={12}>
-          <SimpleGrid columns={1}>
+        <GridItem colSpan={{ base: 12, lg: 6 }} rowSpan={12}>
+          <SimpleGrid columns={2}>
             {offerings.map((_package) => (
               <PackageComponent key={_package._id} data={_package} />
             ))}

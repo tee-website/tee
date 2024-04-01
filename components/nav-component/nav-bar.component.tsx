@@ -1,6 +1,7 @@
 import { HStack, Box, Image, Button, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import { ContactModel } from '../contact-modal/contact-modal'
+import { Phone, PhoneTelephone } from '@icon-park/react'
 
 export type NavbarProps = {}
 
@@ -24,8 +25,8 @@ export default function NavbarComponent() {
         <HStack justifyContent={'space-around'}>
           <Button
             data-group
+            p={0}
             borderRadius={'full'}
-            px={5}
             transition={'0.25s'}
             _hover={{
               background: 'green.400',
@@ -35,7 +36,7 @@ export default function NavbarComponent() {
             fontWeight={'medium'}
             onClick={onOpen}
           >
-            {'Contact Us'}
+            <PhoneTelephone />
           </Button>
         </HStack>
       </HStack>
