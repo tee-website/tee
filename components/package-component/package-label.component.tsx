@@ -18,6 +18,7 @@ export default function PackageLabelComponent({
       overflow={'hidden'}
       position={'relative'}
       _hover={{ cursor: 'pointer' }}
+      w={'full'}
     >
       <Box
         onClick={onOpen}

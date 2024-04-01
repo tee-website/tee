@@ -7,6 +7,7 @@ import {
   Text,
   Grid,
   GridItem,
+  HStack,
 } from '@chakra-ui/react'
 import PackageComponent from '../package-component/package.component'
 import { Stack } from '@chakra-ui/react'
@@ -30,7 +31,7 @@ export default function PackageContainer() {
           bg={'blackAlpha.400'}
           color={'white'}
           p={5}
-          colSpan={{ base: 12, lg: 6 }}
+          colSpan={{ base: 12 }}
           rowSpan={12}
         >
           <Stack
@@ -46,12 +47,16 @@ export default function PackageContainer() {
             <Box mt={5} bg={'green.500'} h={1} w={'20%'} />
           </Stack>
         </GridItem>
-        <GridItem colSpan={{ base: 12, lg: 6 }} rowSpan={12}>
-          <SimpleGrid columns={2}>
+        <GridItem colSpan={{ base: 12 }} rowSpan={12}>
+          <Stack
+            direction={{ base: 'column', md: 'row' }}
+            justifyContent={'space-evenly'}
+            gap={0}
+          >
             {offerings.map((_package) => (
               <PackageComponent key={_package._id} data={_package} />
             ))}
-          </SimpleGrid>
+          </Stack>
         </GridItem>
       </Grid>
     </Box>
